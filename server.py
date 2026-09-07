@@ -66,7 +66,7 @@ class Server:
 
 
             case "/entity":
-                with open("/entity/index.html", "rb") as given:
+                with open("entity/index.html", "rb") as given:
                     respuesta += given.read()
                 respuesta = respuesta.decode("utf-8")
             
