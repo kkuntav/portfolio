@@ -2,16 +2,9 @@ import socket
 from pathlib import Path
 import os
 
+
 class Server:
     def __init__(self, port: int, db: str | None) -> None:
-        """
-
-        Initializes a simple HTTP server with
-        the given q-gram index and port.
-
-        SPARQL engine and database are optional.
-
-        """
         self.port = port
         self.db = db
 
@@ -31,7 +24,6 @@ class Server:
         sock.bind(("0.0.0.0", self.port))
         sock.listen(1)
 
-        # TODO: add your code here
         while True:
             client_socket, client_address = sock.accept()
             print(f"Conexión del cliente desde {client_address}")
@@ -57,63 +49,72 @@ class Server:
 
 
     def handle_request(self, request: str) -> str:
+        
         respuesta = b""
         http_code = ""
         content_type = ""
         homer = False
 
-        # Si se entra aquí, es porque se ha respondido el form, 
-        # así que se hace el proceso de qgram y con el flag de homer
-        # se decide hacer el replace
-        # ?homer=Fuente
-        if "?homer=" in request:
-            homer = not homer
-            request, query = request.split("?homer=")
-            query = query.replace("+", " ")
-            
-            q_grams = []
-            query_normalized = query.lower()
-            for i in range(len(query) - 2):
-                q_grams.append(query_normalized[i:i + 3])
-            qgram_replace = f"3-Grams de {query}: {{" + ", ".join(q_grams) + "}"
-
-
-        if Path(request).is_file():
-            # Manejar intento de otros directorios
-            if "/" in request:
-                http_code += "403 Forbidden"
-                respuesta = "No puedes acceder a esta ruta. NO INTENTES ESO"
-            
-            # Servimos el archivo --> homer = lap.html
-            else:
-                if request.endswith(".html"):
-                    content_type = "html"
-                elif request.endswith(".css"):
-                    content_type = "css"
-                elif request.endswith(".txt"):
-                    content_type = "plain"
-                
-                file = request.lower()
-                with open(file, "rb") as given:
+        allowed_paths = ("index.html", "/lecter/index.html", "/dabid/index.html", "/entity/index.html")
+        match request:
+            # Caso de home, index.html en root
+            case "":
+                with open("index.html", "rb") as given:
                     respuesta += given.read()
-
-                respuesta = respuesta.decode("utf-8")
-                http_code += "200 OK"
+                http_code = "200 OK"
                 
-                if homer:
-                    respuesta = respuesta.replace("%RESULT%", f"{qgram_replace}")
-                    respuesta = respuesta.replace("%VALUE%", f"{query}")
-                else:
-                    # Si no se está tratando todavía homer, quitamos el %RESULT% y %VALUE% para que no aparezcan
-                    respuesta = respuesta.replace("%RESULT%", "")
-                    respuesta = respuesta.replace("%VALUE%", "")
+            
+            
+            case _:
+                respuesta += b"No se ha encontrado ese archivo. No busques cosas raras"
+                http_code = "404 Not Found"
+                content_type = "plain"
+
+        if http_code is "":
+            http_code = "200 OK"
+            content_type = "html"  # TBD
 
 
-        # La request no en un archivo
-        else:
-            http_code += "404 Not Found"
-            content_type = "plain"
-            respuesta = "No se ha encontrado ningún archivo, fuera de aquí"
+
+
+
+
+        # if Path(request).is_file():
+        #     # Manejar intento de otros directorios
+        #     if "/" in request:
+        #         http_code += "403 Forbidden"
+        #         respuesta = "No puedes acceder a esta ruta. NO INTENTES ESO"
+            
+        #     # Servimos el archivo --> homer = lap.html
+        #     else:
+        #         if request.endswith(".html"):
+        #             content_type = "html"
+        #         elif request.endswith(".css"):
+        #             content_type = "css"
+        #         elif request.endswith(".txt"):
+        #             content_type = "plain"
+                
+        #         file = request.lower()
+        #         with open(file, "rb") as given:
+        #             respuesta += given.read()
+
+        #         respuesta = respuesta.decode("utf-8")
+        #         http_code += "200 OK"
+                
+        #         if homer:
+        #             respuesta = respuesta.replace("%RESULT%", f"{qgram_replace}")
+        #             respuesta = respuesta.replace("%VALUE%", f"{query}")
+        #         else:
+        #             # Si no se está tratando todavía homer, quitamos el %RESULT% y %VALUE% para que no aparezcan
+        #             respuesta = respuesta.replace("%RESULT%", "")
+        #             respuesta = respuesta.replace("%VALUE%", "")
+
+
+        # # La request no en un archivo
+        # else:
+        #     http_code += "404 Not Found"
+        #     content_type = "plain"
+        #     respuesta = "No se ha encontrado ningún archivo, fuera de aquí"
 
 
         # Primero codificamos el body antes del content-length porque los acentos valen por 2 bytes
