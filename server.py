@@ -61,6 +61,7 @@ class Server:
             case "":
                 with open("index.html", "rb") as given:
                     respuesta += given.read()
+                respuesta = respuesta.decode("utf-8")
                 http_code = "200 OK"
                 
             
