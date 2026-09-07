@@ -1,7 +1,6 @@
-import argparse
 import socket
-import time
 from pathlib import Path
+import os
 
 class Server:
     def __init__(self, port: int, db: str | None) -> None:
@@ -15,6 +14,8 @@ class Server:
         """
         self.port = port
         self.db = db
+
+
 
     def run(self) -> None:
         """
@@ -52,46 +53,6 @@ class Server:
             respuesta = self.handle_request(homer)
             client_socket.sendall(respuesta)
             client_socket.close()
-            
-            
-        
-        
-        
-        
-        
-        
-        # Ahora esperamos después de ponernos a escuchar 
-        # while True:
-        #     print(f"\nEscuchando en el puerto {self.port}...")
-        #     client_socket, client_adress = sock.accept()  # esto bloquea la escucha
-        #     print(f"Conexión establecida con cliente en {client_adress}")
-            
-        #     # Recibimos los mensajes en bytes
-        #     request = b""
-        #     while True:
-        #         data = client_socket.recv(4096)
-        #         if not data:
-        #             break
-                
-        #         request += data
-        #         if b"\r\n\r\n" in request:  # doble salto de línea para terminar mensaje
-        #             break
-        #     request = request.decode("utf-8").strip()  # para pasar de bytes a esa codificacion
-        #     print(f"Mensaje recibido del cliente: {request}")
-            
-            
-        #     # Para extraer el mensaje del protocolo http:
-        #     # GET /homer HTTP/1.1
-        #     pre_message = len("GET /")
-        #     first_line = request.split("\n")[0]
-        #     post_message = len(first_line) - len(" HTTP/1.1") - 1
-        #     mensaje = request[pre_message:post_message]
-            
-        #     # Para manejar el mensaje del cliente
-        #     respuesta = self.handle_request(mensaje)  # recogemos el mensaje del cliente y lo respondemos
-        #     client_socket.sendall(respuesta)  # mandamos todo al socket del cliente
-        #     client_socket.close()  # cerramos conección
-
 
 
 
@@ -163,125 +124,15 @@ class Server:
         header += f"Content-Type: text/{content_type}; charset=utf-8\r\n"
         header += "Connection: close\r\n\r\n"
         return header.encode("utf-8") + body
-        
-        
-        
-        
-        
-        # # Mandar el file que nos pida el mensaje
-        # respuesta = b""
-        # query_result = ""
-        # query = ""
-        # http_code = ""
-        # content_type = ""
-
-        
-        # # caso de tener ya la query en la url
-        # if "?query=" in request:
-        #     request, query = request.split("?query=")
-            
-        #     # Vamos a generar 3-grams del query
-        #     q_grams = []
-        #     query = query.replace("+"," ")
-        #     # |qgram(x)| = len(x) - q + 1
-        #     query_normalized = query.lower()
-        #     for i in range(len(query) - 2):
-        #         q_grams.append(query_normalized[i: i + 3])
-            
-        #     query_result = f"3-Grams de \"{query}\": {{"
-        #     query_result += ", ".join(q_grams)
-        #     query_result += "}"
 
 
 
-
-
-        # if Path(request).is_file():
-        #     if "/" in request:  # intentar acceder con ruta absoluta
-        #         respuesta = f"VEGGA no te entregará acceso a \"{request}\". Eso no está bien".encode("utf-8")
-        #         http_code = "403 Go out"
-
-
-        #     else:
-        #         file = request.lower()
-        #         http_code = "200 Todo cool"
-        #         with open(file, "rb") as given:
-        #             respuesta += given.read()
-
-
-        #         # tipo del archivo para el header
-        #         if request.endswith(".html"):
-        #             content_type = "text/html"
-        #         elif request.endswith(".txt"):
-        #             content_type = "text/plain"
-        #         elif request.endswith(".css"):
-        #             content_type = "text/css"
-                
-                
-        #         # Responder la query
-        #         if request == "search.html":
-        #             # Con los replace, lo que hacemos es poner esos strings en los &values%
-        #             # que tenemos en el html; editamos el html antes de mandarlo al navegador
-        #             respuesta = respuesta.replace(b"%QUERY%", query.encode("utf-8"))
-        #             respuesta = respuesta.replace(b"%RESULT%", query_result.encode("utf-8"))
-        
-        # else:
-        #     respuesta = "Ese archivo no existe fam".encode("utf-8")
-        #     http_code = "404 No existe"
-
-
-
-        # # Para responder a un mensaje de un navegador con http tenemos un protocolo de respuesta
-        # encoding = "utf-8"
-        # content_type += f"; charset={encoding}"
-        
-        # header = f"HTTP/1.1 {http_code}\r\n"
-        # header += f"Content-Length: {len(respuesta)}\r\n"
-        # header += f"Content-Type: {content_type}\r\n"
-        # header += "Connection: close\r\n"
-        # header += "\r\n"
-        
-        # header = header.encode("utf-8")
-        # return (header + respuesta)
-        
-        
-
-
-def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "entities", type=str, help="path to entities file for q-gram index"
-    )
-    parser.add_argument("port", type=int, help="port to run the server on")
-    parser.add_argument(
-        "-db",
-        "--database",
-        type=str,
-        default=None,
-        help="path to sqlite3 database for SPARQL engine",
-    )
-    return parser.parse_args()
-
-
-def main(args: argparse.Namespace) -> None:
-    """
-
-    Builds a q-gram index from the given file
-    and starts a server on the given port.
-
-    """
-    # Create a new q-gram index from the given file.
-    print(f"Building q-gram index from file {args.entities}.")
-    start = time.perf_counter()
-    print(f"Done, took {(time.perf_counter() - start) * 1000:.1f}ms.")
-
-    server = Server(args.port, args.database)
-    print(
-        f"Starting server on port {args.port}, go to "
-        f"http://localhost:{args.port}/search.html"
-    )
+def main() -> None:
+    entities = "entity/database.tsv"
+    port = int(os.environ.get("PORT", 8080))
+    server = Server(port, entities)
     server.run()
 
 
 if __name__ == "__main__":
-    main(parse_args())
+    main()
