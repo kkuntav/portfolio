@@ -37,7 +37,7 @@ class Server:
                     break
             request = request.decode("utf-8").strip()
             # GET /homer HTTP/1.1
-            print(f"Esta es la request que se recibe desde navegador:\n\n{request}")
+            print(f"\n\nEsta es la request que se recibe desde navegador:\n\n{request}")
             first_line = request.split("\r\n")[0]
             pre = len("GET /")
             post = len(" HTTP/1.1")
@@ -56,6 +56,7 @@ class Server:
         homer = False
 
         allowed_paths = ("index.html", "/lecter/index.html", "/dabid/index.html", "/entity/index.html")
+        
         match request:
             # Caso de home, index.html en root
             case "":
@@ -65,17 +66,18 @@ class Server:
 
 
 
-            case "/entity":
+            case "entity":
                 with open("entity/index.html", "rb") as given:
                     respuesta += given.read()
                 respuesta = respuesta.decode("utf-8")
             
             case _:
                 respuesta += b"No se ha encontrado ese archivo. No busques cosas raras"
+                respuesta = respuesta.decode("utf-8")
                 http_code = "404 Not Found"
                 content_type = "plain"
 
-        if http_code is "":
+        if http_code == "":
             http_code = "200 OK"
             content_type = "html"  # TBD
 
