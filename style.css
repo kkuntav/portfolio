@@ -1,4 +1,339 @@
-h1 {
-    color:darkgreen;
+@font-face {
+    font-family: 'Yeezy';
+    src: url('resources/sf_new_republic/SF\ New\ Republic.ttf') format('truetype');
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+
+/* =========================================
+   RESET
+========================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* =========================================
+   BODY
+========================================= */
+
+body {
+    background: #ffffff;
+    color: #111111;
+
+    font-family: 'Yeezy', sans-serif;
+
+    min-height: 100vh;
+
+    padding: 60px 7vw;
+
     text-align: center;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+h1 {
+    font-size: clamp(3rem, 8vw, 8rem);
+
+    font-weight: 900;
+
+    letter-spacing: -0.08em;
+
+    text-transform: uppercase;
+
+    line-height: 0.85;
+
+    margin-bottom: 70px;
+}
+
+
+h2 {
+    font-size: 14px;
+
+    font-weight: 500;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.12em;
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================================
+   SEARCH FORM
+========================================= */
+
+form {
+    position: relative;
+
+    width: 100%;
+
+    max-width: 700px;
+
+    margin: 0 auto 35px;
+
+    border-bottom: 1px solid #111111;
+
+    padding-bottom: 2px;
+}
+
+
+/* =========================================
+   TEXT INPUT
+========================================= */
+
+input[type="text"] {
+    width: 100%;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    color: #111111;
+
+    font-family: inherit;
+    font-size: clamp(1.2rem, 3vw, 2rem);
+    font-weight: 500;
+
+    text-align: center;
+
+    padding: 22px 45px 3px 10px;
+}
+
+
+/* =========================================
+   PLACEHOLDER
+========================================= */
+
+input[type="text"]::placeholder {
+    color: #999999;
+
+    opacity: 1;
+}
+
+
+/* =========================================
+   SEARCH BUTTON
+========================================= */
+
+button[type="submit"] {
+
+    position: absolute;
+
+    right: 5px;
+
+    bottom: 3px;
+
+    width: 32px;
+
+    height: 32px;
+
+    border: none;
+
+    background: transparent;
+
+    padding: 0;
+
+    margin: 0;
+
+    cursor: pointer;
+
+    transition: opacity 0.2s ease;
+}
+
+
+/* =========================================
+   MAGNIFYING GLASS — CIRCLE
+========================================= */
+
+button[type="submit"]::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 13px;
+
+    height: 13px;
+
+    left: 5px;
+
+    top: 7px;
+
+    border: 1.8px solid #111111;
+
+    border-radius: 50%;
+}
+
+
+/* =========================================
+   MAGNIFYING GLASS — HANDLE
+========================================= */
+
+button[type="submit"]::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 8px;
+
+    height: 1.8px;
+
+    left: 17px;
+
+    top: 21px;
+
+    background: #111111;
+
+    transform: rotate(45deg);
+
+    transform-origin: left center;
+}
+
+
+/* =========================================
+   BUTTON HOVER
+========================================= */
+
+button[type="submit"]:hover {
+    opacity: 0.45;
+}
+
+
+/* =========================================
+   TIME / INFORMATION
+========================================= */
+
+p:first-of-type {
+
+    font-size: 10px;
+
+    color: #777777;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.08em;
+
+    margin-bottom: 50px;
+}
+
+
+/* =========================================
+   RESULTS
+========================================= */
+
+p:last-of-type {
+
+    white-space: pre-line;
+
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    font-family: 'Inter', Arial, sans-serif;
+
+    font-size: 15px;
+
+    line-height: 1.8;
+
+    color: #222222;
+
+    border-top: 1px solid #dddddd;
+
+    padding-top: 30px;
+
+    text-align: left;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 30px 25px;
+    }
+
+
+    h1 {
+        font-size: 4rem;
+
+        margin-bottom: 50px;
+    }
+
+
+    h2 {
+        font-size: 12px;
+
+        margin-bottom: 20px;
+    }
+
+
+    form {
+        max-width: 100%;
+
+        padding-bottom: 1px;
+    }
+
+
+    input[type="text"] {
+
+        font-size: 1.2rem;
+
+        padding: 13px 40px 13px 5px;
+    }
+
+
+    button[type="submit"] {
+
+        right: 2px;
+
+        bottom: 2px;
+
+        width: 30px;
+
+        height: 30px;
+    }
+
+
+    button[type="submit"]::before {
+
+        width: 12px;
+
+        height: 12px;
+
+        left: 5px;
+
+        top: 6px;
+    }
+
+
+    button[type="submit"]::after {
+
+        width: 7px;
+
+        left: 16px;
+
+        top: 18px;
+    }
+
+
+    p:last-of-type {
+
+        font-size: 13px;
+
+        line-height: 1.7;
+    }
 }

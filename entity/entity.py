@@ -7,4 +7,4 @@ def main(query: str) -> str:
     for i in result[1]:
         aux += i
         aux += "<br><br>"
-    return aux
+    return result[0] + "<br>", aux

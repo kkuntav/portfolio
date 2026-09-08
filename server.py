@@ -65,20 +65,22 @@ class Server:
         elif "entity" in request:
             query = ""
             result = ""
+            tiempo = ""
             if "?homer" in request:
                 # tratar la query solo si se ha respondido
                 query = request[len("entity?homer="):]
-                result = entity(query)
+                tiempo, result = entity(query)
                 
             # solo servir el index
             request = "entity/index.html"
             with open(request, "rb") as given:
                 respuesta += given.read()
             respuesta = respuesta.decode("utf-8")
-            respuesta = respuesta.replace("%VALUE%", query)
+            respuesta = respuesta.replace("%TIME%", tiempo)
+            respuesta = respuesta.replace("%VALUE%", query.strip().replace("+", " "))
             respuesta = respuesta.replace("%RESULT%", result)
-        
-        
+
+
         elif "lecter" in request:
             pass
         

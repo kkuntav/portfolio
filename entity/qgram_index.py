@@ -299,8 +299,7 @@ def main(query: str, q_gram: int) -> tuple[str, list[str]]:
             f"tot. {merged_items} elements ({q.merge_time:.1f}ms), "
             f"{ped_actual}/{ped_total} ped computations "
             f"({q.ped_time:.1f}ms), took "
-            f"{(time.perf_counter() - start) * 1000:.1f} ms"
-            f"total."
+            f"{(time.perf_counter() - start) * 1000:.1f} ms total."
         )
 
         for syn_id, pedist in postings[:5]:
