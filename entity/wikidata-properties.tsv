@@ -1,0 +1,400 @@
+wdt:P2860	rdfs:label	cites work
+wdt:P2093	rdfs:label	author name string
+wdt:P31	rdfs:label	instance of
+wdt:P1476	rdfs:label	title
+wdt:P577	rdfs:label	publication date
+wdt:P1433	rdfs:label	published in
+wdt:P478	rdfs:label	volume
+wdt:P304	rdfs:label	page(s)
+wdt:P433	rdfs:label	issue
+wdt:P50	rdfs:label	author
+wdt:P407	rdfs:label	language of work or name
+wdt:P921	rdfs:label	main subject
+wdt:P356	rdfs:label	DOI
+wdt:P698	rdfs:label	PubMed publication ID
+wdt:P528	rdfs:label	catalog code
+wdt:P17	rdfs:label	country
+wdt:P131	rdfs:label	located in the administrative territorial entity
+wdt:P1215	rdfs:label	apparent magnitude
+wdt:P106	rdfs:label	occupation
+wdt:P953	rdfs:label	work available at URL
+wdt:P625	rdfs:label	coordinate location
+wdt:P21	rdfs:label	sex or gender
+wdt:P735	rdfs:label	given name
+wdt:P6259	rdfs:label	epoch
+wdt:P6257	rdfs:label	right ascension
+wdt:P6258	rdfs:label	declination
+wdt:P3083	rdfs:label	SIMBAD ID
+wdt:P2671	rdfs:label	Google Knowledge Graph ID
+wdt:P569	rdfs:label	date of birth
+wdt:P59	rdfs:label	constellation
+wdt:P932	rdfs:label	PMC publication ID
+wdt:P373	rdfs:label	Commons category
+wdt:P18	rdfs:label	image
+wdt:P27	rdfs:label	country of citizenship
+wdt:P734	rdfs:label	family name
+wdt:P361	rdfs:label	part of
+wdt:P279	rdfs:label	subclass of
+wdt:P276	rdfs:label	location
+wdt:P13228	rdfs:label	Gaia ID
+wdt:P5875	rdfs:label	ResearchGate publication ID
+wdt:P646	rdfs:label	Freebase ID
+wdt:P6216	rdfs:label	copyright status
+wdt:P684	rdfs:label	ortholog
+wdt:P214	rdfs:label	VIAF cluster ID
+wdt:P10752	rdfs:label	right ascension component of proper motion
+wdt:P10751	rdfs:label	declination component of proper motion
+wdt:P1566	rdfs:label	GeoNames ID
+wdt:P571	rdfs:label	inception
+wdt:P171	rdfs:label	parent taxon
+wdt:P225	rdfs:label	taxon name
+wdt:P105	rdfs:label	taxon rank
+wdt:P19	rdfs:label	place of birth
+wdt:P2216	rdfs:label	radial velocity
+wdt:P195	rdfs:label	collection
+wdt:P2214	rdfs:label	parallax
+wdt:P973	rdfs:label	described at URL
+wdt:P570	rdfs:label	date of death
+wdt:P971	rdfs:label	category combines topics
+wdt:P69	rdfs:label	educated at
+wdt:P846	rdfs:label	GBIF taxon ID
+wdt:P1412	rdfs:label	languages spoken, written or signed
+wdt:P6769	rdfs:label	CNKI CJFD journal article ID
+wdt:P2583	rdfs:label	distance from Earth
+wdt:P495	rdfs:label	country of origin
+wdt:P703	rdfs:label	found in taxon
+wdt:P1813	rdfs:label	short name
+wdt:P527	rdfs:label	has part(s)
+wdt:P227	rdfs:label	GND ID
+wdt:P1104	rdfs:label	number of pages
+wdt:P1435	rdfs:label	heritage designation
+wdt:P1448	rdfs:label	official name
+wdt:P136	rdfs:label	genre
+wdt:P641	rdfs:label	sport
+wdt:P275	rdfs:label	copyright license
+wdt:P213	rdfs:label	ISNI
+wdt:P108	rdfs:label	employer
+wdt:P281	rdfs:label	postal code
+wdt:P10585	rdfs:label	Catalogue of Life ID
+wdt:P856	rdfs:label	official website
+wdt:P186	rdfs:label	made from material
+wdt:P6375	rdfs:label	street address
+wdt:P13046	rdfs:label	publication type of scholarly work
+wdt:P421	rdfs:label	located in time zone
+wdt:P2326	rdfs:label	GNS Unique Feature ID
+wdt:P9157	rdfs:label	Open Tree of Life ID
+wdt:P1082	rdfs:label	population
+wdt:P496	rdfs:label	ORCID iD
+wdt:P40	rdfs:label	child
+wdt:P1343	rdfs:label	described by source
+wdt:P217	rdfs:label	inventory number
+wdt:P166	rdfs:label	award received
+wdt:P161	rdfs:label	cast member
+wdt:P244	rdfs:label	Library of Congress authority ID
+wdt:P2067	rdfs:label	mass
+wdt:P155	rdfs:label	follows
+wdt:P156	rdfs:label	followed by
+wdt:P20	rdfs:label	place of death
+wdt:P54	rdfs:label	member of sports team
+wdt:P2044	rdfs:label	elevation above sea level
+wdt:P6179	rdfs:label	Dimensions Publication ID
+wdt:P39	rdfs:label	position held
+wdt:P170	rdfs:label	creator
+wdt:P274	rdfs:label	chemical formula
+wdt:P5055	rdfs:label	IRMNG ID
+wdt:P662	rdfs:label	PubChem CID
+wdt:P2048	rdfs:label	height
+wdt:P10832	rdfs:label	WorldCat Entities ID
+wdt:P235	rdfs:label	InChIKey
+wdt:P233	rdfs:label	canonical SMILES
+wdt:P234	rdfs:label	InChI
+wdt:P5008	rdfs:label	on focus list of Wikimedia project
+wdt:P101	rdfs:label	field of work
+wdt:P13591	rdfs:label	‎Yale LUX ID
+wdt:P1705	rdfs:label	native label
+wdt:P793	rdfs:label	significant event
+wdt:P1889	rdfs:label	different from
+wdt:P22	rdfs:label	father
+wdt:P819	rdfs:label	ADS bibcode
+wdt:P8608	rdfs:label	Fatcat ID
+wdt:P13049	rdfs:label	DDB person (GND) ID
+wdt:P680	rdfs:label	molecular function
+wdt:P150	rdfs:label	contains the administrative territorial entity
+wdt:P1001	rdfs:label	applies to jurisdiction
+wdt:P2049	rdfs:label	width
+wdt:P345	rdfs:label	IMDb ID
+wdt:P682	rdfs:label	biological process
+wdt:P127	rdfs:label	owned by
+wdt:P6104	rdfs:label	maintained by WikiProject
+wdt:P830	rdfs:label	Encyclopedia of Life ID
+wdt:P644	rdfs:label	genomic start
+wdt:P645	rdfs:label	genomic end
+wdt:P11089	rdfs:label	UniChem compound ID
+wdt:P2548	rdfs:label	strand orientation
+wdt:P585	rdfs:label	point in time
+wdt:P11699	rdfs:label	China movable cultural relic ID
+wdt:P179	rdfs:label	part of the series
+wdt:P269	rdfs:label	IdRef ID
+wdt:P5572	rdfs:label	expressed in
+wdt:P702	rdfs:label	encoded by
+wdt:P1090	rdfs:label	redshift
+wdt:P688	rdfs:label	encodes
+wdt:P180	rdfs:label	depicts
+wdt:P4224	rdfs:label	category contains
+wdt:P231	rdfs:label	CAS Registry Number
+wdt:P159	rdfs:label	headquarters location
+wdt:P47	rdfs:label	shares border with
+wdt:P710	rdfs:label	participant
+wdt:P123	rdfs:label	publisher
+wdt:P580	rdfs:label	start time
+wdt:P7715	rdfs:label	World Flora Online ID
+wdt:P961	rdfs:label	IPNI plant ID
+wdt:P282	rdfs:label	writing system
+wdt:P5037	rdfs:label	Plants of the World Online ID
+wdt:P1344	rdfs:label	participant in
+wdt:P26	rdfs:label	spouse
+wdt:P3382	rdfs:label	GeneDB ID
+wdt:P3117	rdfs:label	DSSTox substance ID
+wdt:P7959	rdfs:label	historic county
+wdt:P7902	rdfs:label	Deutsche Biographie (GND) ID
+wdt:P590	rdfs:label	GNIS Feature ID
+wdt:P3151	rdfs:label	iNaturalist taxon ID
+wdt:P8494	rdfs:label	DSSTOX compound identifier
+wdt:P691	rdfs:label	NL CR AUT ID
+wdt:P681	rdfs:label	cell component
+wdt:P8189	rdfs:label	National Library of Israel J9U ID
+wdt:P137	rdfs:label	operator
+wdt:P582	rdfs:label	end time
+wdt:P351	rdfs:label	Entrez Gene ID
+wdt:P301	rdfs:label	category's main topic
+wdt:P1843	rdfs:label	taxon common name
+wdt:P910	rdfs:label	topic's main category
+wdt:P637	rdfs:label	RefSeq protein ID
+wdt:P215	rdfs:label	spectral class
+wdt:P1559	rdfs:label	name in native language
+wdt:P442	rdfs:label	China division code for Statistics
+wdt:P2046	rdfs:label	area
+wdt:P268	rdfs:label	Bibliothèque nationale de France ID
+wdt:P2892	rdfs:label	UMLS CUI
+wdt:P25	rdfs:label	mother
+wdt:P1454	rdfs:label	legal form
+wdt:P4638	rdfs:label	The Peerage person ID
+wdt:P3368	rdfs:label	Prabook ID
+wdt:P291	rdfs:label	place of publication
+wdt:P850	rdfs:label	WoRMS-ID for taxa
+wdt:P452	rdfs:label	industry
+wdt:P1207	rdfs:label	NUKAT ID
+wdt:P7937	rdfs:label	form of creative work
+wdt:P463	rdfs:label	member of
+wdt:P126	rdfs:label	maintained by
+wdt:P639	rdfs:label	RefSeq RNA ID
+wdt:P815	rdfs:label	ITIS TSN
+wdt:P140	rdfs:label	religion or worldview
+wdt:P1225	rdfs:label	U.S. National Archives Identifier
+wdt:P6879	rdfs:label	effective temperature
+wdt:P1057	rdfs:label	chromosome
+wdt:P6224	rdfs:label	level of description
+wdt:P352	rdfs:label	UniProt protein ID
+wdt:P685	rdfs:label	NCBI taxonomy ID
+wdt:P175	rdfs:label	performer
+wdt:P102	rdfs:label	member of political party
+wdt:P2860	custom:count	0311990422
+wdt:P2093	custom:count	0149922165
+wdt:P31	custom:count	0121300685
+wdt:P1476	custom:count	0052687052
+wdt:P577	custom:count	0050012153
+wdt:P1433	custom:count	0046335235
+wdt:P478	custom:count	0040202169
+wdt:P304	custom:count	0040131943
+wdt:P433	custom:count	0038470606
+wdt:P50	custom:count	0035318258
+wdt:P407	custom:count	0034874415
+wdt:P921	custom:count	0033902554
+wdt:P356	custom:count	0033897805
+wdt:P698	custom:count	0032172850
+wdt:P528	custom:count	0028966325
+wdt:P17	custom:count	0019479275
+wdt:P131	custom:count	0014425512
+wdt:P1215	custom:count	0014309901
+wdt:P106	custom:count	0012568904
+wdt:P953	custom:count	0012516286
+wdt:P625	custom:count	0011859145
+wdt:P21	custom:count	0010685907
+wdt:P735	custom:count	0008487824
+wdt:P6259	custom:count	0008174171
+wdt:P6257	custom:count	0008095909
+wdt:P6258	custom:count	0008095838
+wdt:P3083	custom:count	0008063660
+wdt:P2671	custom:count	0007621107
+wdt:P569	custom:count	0007532720
+wdt:P59	custom:count	0007370980
+wdt:P932	custom:count	0006609202
+wdt:P373	custom:count	0006244503
+wdt:P18	custom:count	0006074355
+wdt:P27	custom:count	0005972176
+wdt:P734	custom:count	0005928027
+wdt:P361	custom:count	0005267685
+wdt:P279	custom:count	0005151782
+wdt:P276	custom:count	0004775866
+wdt:P13228	custom:count	0004606217
+wdt:P5875	custom:count	0004586358
+wdt:P646	custom:count	0004425216
+wdt:P6216	custom:count	0004410249
+wdt:P684	custom:count	0004380063
+wdt:P214	custom:count	0004363766
+wdt:P10752	custom:count	0004088735
+wdt:P10751	custom:count	0004088673
+wdt:P1566	custom:count	0004018003
+wdt:P571	custom:count	0003968434
+wdt:P171	custom:count	0003945452
+wdt:P225	custom:count	0003942833
+wdt:P105	custom:count	0003940443
+wdt:P19	custom:count	0003780974
+wdt:P2216	custom:count	0003778365
+wdt:P195	custom:count	0003776672
+wdt:P2214	custom:count	0003686851
+wdt:P973	custom:count	0003672794
+wdt:P570	custom:count	0003603469
+wdt:P971	custom:count	0003388822
+wdt:P69	custom:count	0003342161
+wdt:P846	custom:count	0003319854
+wdt:P1412	custom:count	0003300674
+wdt:P6769	custom:count	0003060786
+wdt:P2583	custom:count	0003031246
+wdt:P495	custom:count	0002895933
+wdt:P703	custom:count	0002888673
+wdt:P1813	custom:count	0002795942
+wdt:P527	custom:count	0002708018
+wdt:P227	custom:count	0002651705
+wdt:P1104	custom:count	0002647677
+wdt:P1435	custom:count	0002567659
+wdt:P1448	custom:count	0002458629
+wdt:P136	custom:count	0002433460
+wdt:P641	custom:count	0002419729
+wdt:P275	custom:count	0002395699
+wdt:P213	custom:count	0002316098
+wdt:P108	custom:count	0002312020
+wdt:P281	custom:count	0002289203
+wdt:P10585	custom:count	0002289152
+wdt:P856	custom:count	0002263535
+wdt:P186	custom:count	0002211887
+wdt:P6375	custom:count	0002209765
+wdt:P13046	custom:count	0002148763
+wdt:P421	custom:count	0002130207
+wdt:P2326	custom:count	0002111601
+wdt:P9157	custom:count	0002035794
+wdt:P1082	custom:count	0002018015
+wdt:P496	custom:count	0001940393
+wdt:P40	custom:count	0001911017
+wdt:P1343	custom:count	0001897906
+wdt:P217	custom:count	0001788629
+wdt:P166	custom:count	0001757413
+wdt:P161	custom:count	0001725922
+wdt:P244	custom:count	0001715999
+wdt:P2067	custom:count	0001711391
+wdt:P155	custom:count	0001698142
+wdt:P156	custom:count	0001675698
+wdt:P20	custom:count	0001612808
+wdt:P54	custom:count	0001610430
+wdt:P2044	custom:count	0001565819
+wdt:P6179	custom:count	0001540703
+wdt:P39	custom:count	0001484332
+wdt:P170	custom:count	0001455760
+wdt:P274	custom:count	0001426730
+wdt:P5055	custom:count	0001382879
+wdt:P662	custom:count	0001376068
+wdt:P2048	custom:count	0001369708
+wdt:P10832	custom:count	0001368836
+wdt:P235	custom:count	0001366007
+wdt:P233	custom:count	0001364935
+wdt:P234	custom:count	0001364573
+wdt:P5008	custom:count	0001355935
+wdt:P101	custom:count	0001341023
+wdt:P13591	custom:count	0001243592
+wdt:P1705	custom:count	0001230237
+wdt:P793	custom:count	0001201745
+wdt:P1889	custom:count	0001188710
+wdt:P22	custom:count	0001183588
+wdt:P819	custom:count	0001165389
+wdt:P8608	custom:count	0001157507
+wdt:P13049	custom:count	0001156550
+wdt:P680	custom:count	0001154778
+wdt:P150	custom:count	0001153377
+wdt:P1001	custom:count	0001151892
+wdt:P2049	custom:count	0001151261
+wdt:P345	custom:count	0001138257
+wdt:P682	custom:count	0001134368
+wdt:P127	custom:count	0001132637
+wdt:P6104	custom:count	0001115009
+wdt:P830	custom:count	0001105850
+wdt:P644	custom:count	0001085031
+wdt:P645	custom:count	0001085030
+wdt:P11089	custom:count	0001065509
+wdt:P2548	custom:count	0001058569
+wdt:P585	custom:count	0001056752
+wdt:P11699	custom:count	0001050934
+wdt:P179	custom:count	0001031157
+wdt:P269	custom:count	0001022382
+wdt:P5572	custom:count	0000983760
+wdt:P702	custom:count	0000981256
+wdt:P1090	custom:count	0000980142
+wdt:P688	custom:count	0000978210
+wdt:P180	custom:count	0000969590
+wdt:P4224	custom:count	0000946816
+wdt:P231	custom:count	0000945340
+wdt:P159	custom:count	0000942123
+wdt:P47	custom:count	0000930802
+wdt:P710	custom:count	0000928828
+wdt:P123	custom:count	0000925964
+wdt:P580	custom:count	0000922881
+wdt:P7715	custom:count	0000920871
+wdt:P961	custom:count	0000908069
+wdt:P282	custom:count	0000907085
+wdt:P5037	custom:count	0000891698
+wdt:P1344	custom:count	0000890294
+wdt:P26	custom:count	0000886235
+wdt:P3382	custom:count	0000884216
+wdt:P3117	custom:count	0000882465
+wdt:P7959	custom:count	0000873788
+wdt:P7902	custom:count	0000867407
+wdt:P590	custom:count	0000852800
+wdt:P3151	custom:count	0000850575
+wdt:P8494	custom:count	0000848688
+wdt:P691	custom:count	0000847189
+wdt:P681	custom:count	0000842922
+wdt:P8189	custom:count	0000840214
+wdt:P137	custom:count	0000836686
+wdt:P582	custom:count	0000807635
+wdt:P351	custom:count	0000788066
+wdt:P301	custom:count	0000785996
+wdt:P1843	custom:count	0000782312
+wdt:P910	custom:count	0000781340
+wdt:P637	custom:count	0000771549
+wdt:P215	custom:count	0000770838
+wdt:P1559	custom:count	0000765496
+wdt:P442	custom:count	0000753359
+wdt:P2046	custom:count	0000743613
+wdt:P268	custom:count	0000740555
+wdt:P2892	custom:count	0000737710
+wdt:P25	custom:count	0000735139
+wdt:P1454	custom:count	0000730590
+wdt:P4638	custom:count	0000718821
+wdt:P3368	custom:count	0000705883
+wdt:P291	custom:count	0000703269
+wdt:P850	custom:count	0000695784
+wdt:P452	custom:count	0000694507
+wdt:P1207	custom:count	0000693977
+wdt:P7937	custom:count	0000687681
+wdt:P463	custom:count	0000672364
+wdt:P126	custom:count	0000661282
+wdt:P639	custom:count	0000656729
+wdt:P815	custom:count	0000651937
+wdt:P140	custom:count	0000646026
+wdt:P1225	custom:count	0000645112
+wdt:P6879	custom:count	0000641215
+wdt:P1057	custom:count	0000635054
+wdt:P6224	custom:count	0000631670
+wdt:P352	custom:count	0000627234
+wdt:P685	custom:count	0000626400
+wdt:P175	custom:count	0000625660
+wdt:P102	custom:count	0000619615

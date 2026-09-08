@@ -1,12 +1,12 @@
 import socket
-from pathlib import Path
 import os
+
+from entity.entity import main as entity
 
 
 class Server:
-    def __init__(self, port: int, db: str | None) -> None:
+    def __init__(self, port: int) -> None:
         self.port = port
-        self.db = db
 
 
 
@@ -23,6 +23,7 @@ class Server:
 
         sock.bind(("0.0.0.0", self.port))
         sock.listen(1)
+        print(f"Escuchando en puerto {self.port}")
 
         while True:
             client_socket, client_address = sock.accept()
@@ -49,80 +50,62 @@ class Server:
 
 
     def handle_request(self, request: str) -> str:
-        
         respuesta = b""
         http_code = ""
         content_type = ""
+        entry_flag = True
 
-        allowed_paths = ("", "lecter", "dabid", "entity", "style.css")
+
+        if request == "":
+            # index.html, hub primero
+            with open("index.html", "rb") as given:
+                respuesta += given.read()
+            respuesta = respuesta.decode("utf-8")
         
-        if request in allowed_paths:
-            if request == "":
-                request = "index.html"
-            elif request.count(".") == 0:
-                request += "/index.html"
-
+        elif "entity" in request:
+            query = ""
+            result = ""
+            if "?homer" in request:
+                # tratar la query solo si se ha respondido
+                query = request[len("entity?homer="):]
+                result = entity(query)
+                
+            # solo servir el index
+            request = "entity/index.html"
             with open(request, "rb") as given:
                 respuesta += given.read()
             respuesta = respuesta.decode("utf-8")
-            http_code = "200 OK"
-
-            # content-type block
-            if request.endswith(".html"):
-                content_type = "html"
-            elif request.endswith(".css"):
-                content_type = "css"
-            elif request.endswith(".txt"):
-                content_type = "plain"
-
-
-
-
-        else:
+            respuesta = respuesta.replace("%VALUE%", query)
+            respuesta = respuesta.replace("%RESULT%", result)
+        
+        
+        elif "lecter" in request:
+            pass
+        
+        elif "dabid" in request:
+            pass
+        
+        elif request == "style.css":
+            with open(request, "rb") as given:
+                respuesta += given.read()
+            respuesta = respuesta.decode("utf-8")
+        
+        else:  # Error 404, no se ha accedido como debe ser a los proyectos
+            entry_flag = False
             respuesta += b"No se ha encontrado ese archivo. No busques cosas raras"
             respuesta = respuesta.decode("utf-8")
             http_code = "404 Not Found"
             content_type = "plain"
 
-
-
-        # if Path(request).is_file():
-        #     # Manejar intento de otros directorios
-        #     if "/" in request:
-        #         http_code += "403 Forbidden"
-        #         respuesta = "No puedes acceder a esta ruta. NO INTENTES ESO"
-            
-        #     # Servimos el archivo --> homer = lap.html
-        #     else:
-        #         if request.endswith(".html"):
-        #             content_type = "html"
-        #         elif request.endswith(".css"):
-        #             content_type = "css"
-        #         elif request.endswith(".txt"):
-        #             content_type = "plain"
-                
-        #         file = request.lower()
-        #         with open(file, "rb") as given:
-        #             respuesta += given.read()
-
-        #         respuesta = respuesta.decode("utf-8")
-        #         http_code += "200 OK"
-                
-        #         if homer:
-        #             respuesta = respuesta.replace("%RESULT%", f"{qgram_replace}")
-        #             respuesta = respuesta.replace("%VALUE%", f"{query}")
-        #         else:
-        #             # Si no se está tratando todavía homer, quitamos el %RESULT% y %VALUE% para que no aparezcan
-        #             respuesta = respuesta.replace("%RESULT%", "")
-        #             respuesta = respuesta.replace("%VALUE%", "")
-
-
-        # # La request no en un archivo
-        # else:
-        #     http_code += "404 Not Found"
-        #     content_type = "plain"
-        #     respuesta = "No se ha encontrado ningún archivo, fuera de aquí"
-
+        # content-type block & code
+        if entry_flag:
+            http_code = "200 OK"
+            if request.endswith(".html") or request == "":
+                content_type = "html"
+            elif request.endswith(".css"):
+                content_type = "css"
+            elif request.endswith(".txt"):
+                content_type = "plain"
 
         # Primero codificamos el body antes del content-length porque los acentos valen por 2 bytes
         body = respuesta.encode("utf-8")
@@ -138,7 +121,7 @@ class Server:
 def main() -> None:
     entities = "entity/database.tsv"
     port = int(os.environ.get("PORT", 8080))
-    server = Server(port, entities)
+    server = Server(port)
     server.run()
 
 
