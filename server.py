@@ -53,36 +53,36 @@ class Server:
         respuesta = b""
         http_code = ""
         content_type = ""
-        homer = False
 
-        allowed_paths = ("index.html", "/lecter/index.html", "/dabid/index.html", "/entity/index.html")
+        allowed_paths = ("", "lecter", "dabid", "entity", "style.css")
         
-        match request:
-            # Caso de home, index.html en root
-            case "":
-                with open("index.html", "rb") as given:
-                    respuesta += given.read()
-                respuesta = respuesta.decode("utf-8")
+        if request in allowed_paths:
+            if request == "":
+                request = "index.html"
+            elif request.count(".") == 0:
+                request += "/index.html"
 
+            with open(request, "rb") as given:
+                respuesta += given.read()
+            respuesta = respuesta.decode("utf-8")
+            http_code = "200 OK"
 
-
-            case "entity":
-                with open("entity/index.html", "rb") as given:
-                    respuesta += given.read()
-                respuesta = respuesta.decode("utf-8")
-            
-            case _:
-                respuesta += b"No se ha encontrado ese archivo. No busques cosas raras"
-                respuesta = respuesta.decode("utf-8")
-                http_code = "404 Not Found"
+            # content-type block
+            if request.endswith(".html"):
+                content_type = "html"
+            elif request.endswith(".css"):
+                content_type = "css"
+            elif request.endswith(".txt"):
                 content_type = "plain"
 
-        if http_code == "":
-            http_code = "200 OK"
-            content_type = "html"  # TBD
 
 
 
+        else:
+            respuesta += b"No se ha encontrado ese archivo. No busques cosas raras"
+            respuesta = respuesta.decode("utf-8")
+            http_code = "404 Not Found"
+            content_type = "plain"
 
 
 
