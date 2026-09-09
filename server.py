@@ -82,9 +82,11 @@ class Server:
 
 
         elif "lecter" in request:
+            respuesta = respuesta.decode("utf-8")
             pass
         
         elif "dabid" in request:
+            respuesta = respuesta.decode("utf-8")
             pass
         
         elif request == "style.css":
