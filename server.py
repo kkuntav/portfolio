@@ -121,7 +121,6 @@ class Server:
 
 
 def main() -> None:
-    entities = "entity/database.tsv"
     port = int(os.environ.get("PORT", 8080))
     server = Server(port)
     server.run()
