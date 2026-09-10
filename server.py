@@ -53,6 +53,7 @@ class Server:
         respuesta = b""
         http_code = ""
         content_type = ""
+        charset = ""
         entry_flag = True
 
 
@@ -71,14 +72,20 @@ class Server:
                 query = request[len("entity?homer="):]
                 tiempo, result = entity(query)
                 
+                
             # solo servir el index
             request = "entity/index.html"
             with open(request, "rb") as given:
                 respuesta += given.read()
             respuesta = respuesta.decode("utf-8")
-            respuesta = respuesta.replace("%TIME%", tiempo)
-            respuesta = respuesta.replace("%VALUE%", query.strip().replace("+", " "))
-            respuesta = respuesta.replace("%RESULT%", result)
+            if tiempo == "no_query":
+                respuesta = respuesta.replace("%TIME%", "No result available")
+                respuesta = respuesta.replace("%VALUE%", query.strip().replace("+", " "))
+                respuesta = respuesta.replace("%RESULT%", "<p>Query field cannot be empty</p>")
+            else:
+                respuesta = respuesta.replace("%TIME%", tiempo)
+                respuesta = respuesta.replace("%VALUE%", query.strip().replace("+", " "))
+                respuesta = respuesta.replace("%RESULT%", result)
 
 
         elif "lecter" in request:
@@ -94,6 +101,11 @@ class Server:
                 respuesta += given.read()
             respuesta = respuesta.decode("utf-8")
         
+        elif "resources/" in request:
+            with open(request, "rb") as given:
+                respuesta += given.read()
+            # no se decodifica para no corromper la fuente
+
         else:  # Error 404, no se ha accedido como debe ser a los proyectos
             entry_flag = False
             respuesta += b"No se ha encontrado ese archivo. No busques cosas raras"
@@ -104,19 +116,30 @@ class Server:
         # content-type block & code
         if entry_flag:
             http_code = "200 OK"
-            if request.endswith(".html") or request == "":
-                content_type = "html"
-            elif request.endswith(".css"):
-                content_type = "css"
-            elif request.endswith(".txt"):
-                content_type = "plain"
+            if content_type == "":  # case "font/ttf"
+                if request.endswith(".html") or request == "":
+                    content_type = "text/html"
+                elif request.endswith(".css"):
+                    content_type = "text/css"
+                elif request.endswith(".txt"):
+                    content_type = "text/plain"
+                elif request.endswith(".ttf"):
+                    content_type = "font/ttf"
+                elif request.endswith(".ico"):
+                    content_type = "image/x-icon"
 
         # Primero codificamos el body antes del content-length porque los acentos valen por 2 bytes
-        body = respuesta.encode("utf-8")
+        if content_type not in ("font/ttf", "image/x-icon"):
+            body = respuesta.encode("utf-8")
+            charset = "; charset=utf-8"
+        else:
+            # ico y ttf no tienen charset
+            charset = ""
+            body = respuesta
 
         header = f"HTTP/1.1 {http_code}\r\n"
         header += f"Content-Length: {len(body)}\r\n"
-        header += f"Content-Type: text/{content_type}; charset=utf-8\r\n"
+        header += f"Content-Type: {content_type}{charset}\r\n"
         header += "Connection: close\r\n\r\n"
         return header.encode("utf-8") + body
 

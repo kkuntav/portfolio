@@ -1,14 +1,19 @@
-@font-face {
-    font-family: 'Yeezy';
-    src: url('resources/sf_new_republic/SF\ New\ Republic.ttf') format('truetype');
+:root {
+    --black: #000000;
+    --white: #ffffff;
+
+    --ink-60: #666666;
+    --ink-40: #999999;
+
+    --font-main: 'Helvetica Neue', Arial, sans-serif;
+
+    --max-width: 1180px;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
-
-/* =========================================
+/* ========================================
    RESET
-========================================= */
+   ======================================== */
 
 * {
     box-sizing: border-box;
@@ -16,324 +21,516 @@
     padding: 0;
 }
 
-
-/* =========================================
-   BODY
-========================================= */
+html {
+    width: 100%;
+}
 
 body {
-    background: #ffffff;
-    color: #111111;
-
-    font-family: 'Yeezy', sans-serif;
-
+    width: 100%;
     min-height: 100vh;
 
-    padding: 60px 7vw;
+    background: var(--white);
+    color: var(--black);
 
-    text-align: center;
+    font-family: var(--font-main);
+
+    padding: 75px 5vw 80px;
+}
+
+img {
+    display: block;
+    max-width: 100%;
 }
 
 
-/* =========================================
-   HEADER
-========================================= */
+/* ========================================
+   MAIN TITLE
+   ======================================== */
 
 h1 {
-    font-size: clamp(3rem, 8vw, 8rem);
+    width: 100%;
+    max-width: var(--max-width);
 
+    margin: 0 auto 28px;
+
+    font-family: var(--font-main);
+
+    font-size: clamp(3.2rem, 8vw, 7.8rem);
     font-weight: 900;
 
-    letter-spacing: -0.08em;
+    letter-spacing: -0.055em;
+    line-height: 0.9;
 
-    text-transform: uppercase;
+    text-align: center;
 
-    line-height: 0.85;
-
-    margin-bottom: 70px;
+    white-space: nowrap;
 }
 
+
+/* ========================================
+   SUBTITLE
+   ======================================== */
 
 h2 {
-    font-size: 14px;
+    width: 100%;
+    max-width: var(--max-width);
 
+    margin: 0 auto 42px;
+
+    font-family: var(--font-main);
+
+    font-size: 13px;
     font-weight: 500;
 
+    letter-spacing: 0.08em;
+
+    color: var(--ink-60);
+
+    text-align: center;
+
     text-transform: uppercase;
-
-    letter-spacing: 0.12em;
-
-    margin-bottom: 25px;
 }
 
 
-/* =========================================
+/* ========================================
    SEARCH FORM
-========================================= */
+   ======================================== */
 
 form {
     position: relative;
 
     width: 100%;
+    max-width: var(--max-width);
 
-    max-width: 700px;
+    height: 48px;
 
-    margin: 0 auto 35px;
+    margin: 0 auto 22px;
 
-    border-bottom: 1px solid #111111;
-
-    padding-bottom: 2px;
+    border-bottom: 1.5px solid var(--black);
 }
 
 
-/* =========================================
-   TEXT INPUT
-========================================= */
+/* ========================================
+   SEARCH INPUT
+   ======================================== */
 
 input[type="text"] {
     width: 100%;
+    height: 48px;
 
     border: none;
     outline: none;
 
     background: transparent;
 
-    color: #111111;
+    color: var(--black);
 
-    font-family: inherit;
-    font-size: clamp(1.2rem, 3vw, 2rem);
-    font-weight: 500;
+    font-family: var(--font-main);
+
+    font-size: 24px;
+    font-weight: 400;
 
     text-align: center;
 
-    padding: 22px 45px 3px 10px;
+    padding: 17px 10px 0 10px;
 }
-
-
-/* =========================================
-   PLACEHOLDER
-========================================= */
 
 input[type="text"]::placeholder {
-    color: #999999;
+    color: var(--ink-40);
+}
 
-    opacity: 1;
+input[type="text"]:focus {
+    outline: none;
 }
 
 
-/* =========================================
+/* ========================================
    SEARCH BUTTON
-========================================= */
+   ======================================== */
 
 button[type="submit"] {
-
     position: absolute;
 
     right: 5px;
+    bottom: 8px;
 
-    bottom: 3px;
-
-    width: 32px;
-
-    height: 32px;
+    width: 28px;
+    height: 28px;
 
     border: none;
 
     background: transparent;
-
-    padding: 0;
-
-    margin: 0;
 
     cursor: pointer;
 
     transition: opacity 0.2s ease;
 }
 
-
-/* =========================================
-   MAGNIFYING GLASS — CIRCLE
-========================================= */
-
 button[type="submit"]::before {
-
     content: "";
 
     position: absolute;
 
-    width: 13px;
+    width: 15px;
+    height: 15px;
 
-    height: 13px;
+    left: 2px;
+    top: 2px;
 
-    left: 5px;
-
-    top: 7px;
-
-    border: 1.8px solid #111111;
+    border: 1.6px solid var(--black);
 
     border-radius: 50%;
 }
 
-
-/* =========================================
-   MAGNIFYING GLASS — HANDLE
-========================================= */
-
 button[type="submit"]::after {
-
     content: "";
 
     position: absolute;
 
     width: 8px;
+    height: 1.6px;
 
-    height: 1.8px;
+    left: 15px;
+    top: 18px;
 
-    left: 17px;
-
-    top: 21px;
-
-    background: #111111;
+    background: var(--black);
 
     transform: rotate(45deg);
-
     transform-origin: left center;
 }
 
-
-/* =========================================
-   BUTTON HOVER
-========================================= */
-
 button[type="submit"]:hover {
-    opacity: 0.45;
+    opacity: 0.4;
 }
 
 
-/* =========================================
-   TIME / INFORMATION
-========================================= */
+/* ========================================
+   SEARCH STATUS
+   ======================================== */
 
 p:first-of-type {
+    width: 100%;
+    max-width: var(--max-width);
 
-    font-size: 10px;
+    margin: 0 auto 65px;
 
-    color: #777777;
+    font-family: var(--font-main);
 
-    text-transform: uppercase;
+    font-size: 11px;
+    font-weight: 400;
 
-    letter-spacing: 0.08em;
+    letter-spacing: 0.015em;
 
-    margin-bottom: 50px;
+    color: var(--ink-40);
+
+    text-align: center;
 }
 
 
-/* =========================================
-   RESULTS
-========================================= */
+/* ========================================
+   RESULTS GRID
+   ======================================== */
 
-p:last-of-type {
-
-    white-space: pre-line;
-
-    max-width: 1100px;
+.results {
+    width: 100%;
+    max-width: var(--max-width);
 
     margin: 0 auto;
 
-    font-family: 'Inter', Arial, sans-serif;
+    display: grid;
 
-    font-size: 15px;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
 
-    line-height: 1.8;
+    column-gap: 30px;
 
-    color: #222222;
-
-    border-top: 1px solid #dddddd;
-
-    padding-top: 30px;
-
-    text-align: left;
+    counter-reset: result-index;
 }
 
 
-/* =========================================
-   MOBILE
-========================================= */
+/* ========================================
+   RESULT
+   ======================================== */
 
-@media (max-width: 600px) {
+.result {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    counter-increment: result-index;
+}
+
+
+/* ========================================
+   RESULT IMAGE
+   ======================================== */
+
+.result img {
+    width: 100%;
+    height: 220px;
+
+    object-fit: contain;
+    object-position: center;
+
+    background: var(--white);
+
+    margin: 0 auto 22px;
+
+    transition: transform 0.3s ease;
+}
+
+.result img:hover {
+    transform: scale(1.025);
+}
+
+
+/* ========================================
+   RESULT INFORMATION
+   ======================================== */
+
+.result-info {
+    width: 100%;
+
+    text-align: center;
+}
+
+
+/* ========================================
+   RESULT NUMBER
+   ======================================== */
+
+.result-info::before {
+    content: counter(result-index, decimal-leading-zero);
+
+    display: block;
+
+    margin-bottom: 9px;
+
+    font-family: var(--font-main);
+
+    font-size: 11px;
+    font-weight: 500;
+
+    letter-spacing: 0.05em;
+
+    color: var(--ink-40);
+}
+
+
+/* ========================================
+   RESULT TITLE
+   ======================================== */
+
+.result h3 {
+    min-height: 50px;
+
+    margin-bottom: 11px;
+
+    font-family: var(--font-main);
+
+    font-size: 24px;
+    font-weight: 500;
+
+    letter-spacing: -0.025em;
+
+    line-height: 1.05;
+
+    color: var(--black);
+}
+
+
+/* ========================================
+   DESCRIPTION
+   ======================================== */
+
+.result-info p {
+    width: 100%;
+    max-width: 28ch;
+
+    min-height: 54px;
+
+    margin: 0 auto 17px;
+
+    font-family: var(--font-main);
+
+    font-size: 12px;
+    font-weight: 400;
+
+    line-height: 1.5;
+
+    color: var(--ink-60);
+
+    display: -webkit-box;
+
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+
+    overflow: hidden;
+}
+
+
+/* ========================================
+   METADATA
+   ======================================== */
+
+.score,
+.ped,
+.syn,
+.qid {
+    display: block;
+
+    margin-bottom: 5px;
+
+    font-family: var(--font-main);
+
+    font-size: 10.5px;
+    font-weight: 400;
+
+    line-height: 1.4;
+
+    color: var(--ink-40);
+}
+
+
+/* ========================================
+   METADATA LABELS
+   ======================================== */
+
+.score::before,
+.ped::before,
+.syn::before,
+.qid::before {
+    font-weight: 500;
+
+    color: var(--ink-60);
+}
+
+.score::before {
+    content: "score ";
+}
+
+.ped::before {
+    content: "ped ";
+}
+
+.syn::before {
+    content: "syn ";
+}
+
+.qid::before {
+    content: "qid ";
+}
+
+
+/* ========================================
+   SCORE
+   ======================================== */
+
+.score {
+    color: var(--black);
+
+    font-weight: 600;
+}
+
+.score::before {
+    color: var(--black);
+
+    font-weight: 600;
+}
+
+
+/* ========================================
+   MOBILE
+   ======================================== */
+
+@media (max-width: 750px) {
 
     body {
-        padding: 30px 25px;
+        padding: 50px 24px 50px;
     }
 
 
     h1 {
-        font-size: 4rem;
+        font-size: 11vw;
 
-        margin-bottom: 50px;
+        letter-spacing: -0.06em;
+
+        margin-bottom: 22px;
     }
 
 
     h2 {
-        font-size: 12px;
+        font-size: 10px;
 
-        margin-bottom: 20px;
+        line-height: 1.5;
+
+        margin-bottom: 30px;
     }
 
 
     form {
-        max-width: 100%;
-
-        padding-bottom: 1px;
+        height: 44px;
     }
 
 
     input[type="text"] {
+        height: 44px;
 
-        font-size: 1.2rem;
+        font-size: 20px;
 
-        padding: 13px 40px 13px 5px;
+        padding: 14px 10px 0 10px;
     }
 
 
     button[type="submit"] {
-
-        right: 2px;
-
-        bottom: 2px;
-
-        width: 30px;
-
-        height: 30px;
+        bottom: 6px;
     }
 
 
-    button[type="submit"]::before {
+    p:first-of-type {
+        font-size: 9px;
 
-        width: 12px;
+        line-height: 1.5;
 
-        height: 12px;
-
-        left: 5px;
-
-        top: 6px;
+        margin-bottom: 45px;
     }
 
 
-    button[type="submit"]::after {
+    .results {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
 
-        width: 7px;
-
-        left: 16px;
-
-        top: 18px;
+        column-gap: 20px;
+        row-gap: 45px;
     }
 
 
-    p:last-of-type {
+    .result img {
+        height: 180px;
 
-        font-size: 13px;
+        margin-bottom: 17px;
+    }
 
-        line-height: 1.7;
+
+    .result h3 {
+        min-height: 42px;
+
+        font-size: 20px;
+    }
+
+
+    .result-info p {
+        min-height: 45px;
+
+        font-size: 10px;
+
+        max-width: 23ch;
+    }
+
+
+    .score,
+    .ped,
+    .syn,
+    .qid {
+        font-size: 9px;
     }
 }

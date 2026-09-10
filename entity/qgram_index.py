@@ -238,6 +238,7 @@ class QGramIndex:
         ('brei', 'brei', 2, ['second entity', 'also for doctests'])
         >>> q.get_infos(3)
         """
+        # name	score	synonyms	wikidata_id	description	wikipedia_url	image_url
         if id < 1 or id > len(self.names):
             return None
         syn = self.names[id - 1]
@@ -262,7 +263,7 @@ class QGramIndex:
 
 
 
-def main(query: str, q_gram: int) -> tuple[str, list[str]]:
+def main(query: str, q_gram: int) -> tuple[str, list[list[str]]]:
     """
 
     Builds a qgram index from the given file and then, in an infinite loop,
@@ -270,6 +271,8 @@ def main(query: str, q_gram: int) -> tuple[str, list[str]]:
 
     """
     # Create a new index from the given file.
+    if len(query) == 0:
+        return "no_query", list()
     tiempo = ""
     result = []
     start = time.perf_counter()
@@ -280,10 +283,6 @@ def main(query: str, q_gram: int) -> tuple[str, list[str]]:
     while True:
         # Ask the user for a keyword query.
         query = q.normalize(query)
-        if len(query) == 0:
-            result.append("Query must not be empty.")
-            # print("Query must not be empty.")
-            continue
 
         start = time.perf_counter()
 
@@ -306,10 +305,8 @@ def main(query: str, q_gram: int) -> tuple[str, list[str]]:
             infos = q.get_infos(syn_id)
             assert infos is not None, "invalid ID"
             syn, name, score, info = infos
-            result.append(
-                f"{name} (score={score}, ped={pedist}, "
-                f"qid={info[0]}, via '{syn}'):\n{info[1]}"
-            )
+            # [name], [score], [ped], [qid], [synon], [description], [foto]
+            result.append([name, score, pedist, info[0], syn, info[1], info[-1]])
         break
     return (tiempo, result)
 
