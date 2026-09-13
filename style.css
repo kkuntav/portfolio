@@ -254,6 +254,20 @@ transition: border-color 0.2s ease;
 
 footer a:hover { text-decoration: none; }
 
+/* SCROLLBAR */ 
+::-webkit-scrollbar { 
+    width: 5px; 
+} 
+::-webkit-scrollbar-track { 
+    background: #ffffff; 
+} 
+::-webkit-scrollbar-thumb { 
+    background: #cccccc; 
+} 
+::-webkit-scrollbar-thumb:hover { 
+    background: #999999; 
+}
+
 
 /* mobiel part */
 @media (max-width: 700px) {

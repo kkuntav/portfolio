@@ -1,0 +1,8 @@
+EmpID,FirstName,LastName,StartDate,ExitDate,DepartmentID,Title,SupervisorID,Email,EmployeeStatus,EmployeeType,DOB,Gender,State
+1001,Juan,Perez,2020-01-15,,D01,Data Analyst,1005,juan.perez@company.com,Active,Full-Time,1990-05-10,M,CA
+1002,Ana,Gomez,2019-03-20,,D02,HR Specialist,1006,ana.gomez@company.com,Active,Full-Time,1988-11-23,F,TX
+1003,Carlos,Ruiz,2021-07-01,,D01,Data Engineer,1005,carlos.ruiz@company.com,Active,Contract,1995-02-14,M,NY
+1004,Lucia,Martinez,2018-09-10,2023-06-30,D03,Sales Manager,1007,lucia.martinez@company.com,Terminated,Full-Time,1985-08-19,F,FL
+1005,Pedro,Sanchez,2015-04-05,,D01,Head of Data,,pedro.sanchez@company.com,Active,Full-Time,1980-01-01,M,CA
+1006,Marta,Lopez,2016-12-12,,D02,HR Manager,,marta.lopez@company.com,Active,Full-Time,1982-07-07,F,TX
+1007,Diego,Fernandez,2014-06-18,,D03,Sales Director,,diego.fernandez@company.com,Active,Full-Time,1979-03-30,M,FL
