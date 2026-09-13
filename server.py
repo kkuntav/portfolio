@@ -57,9 +57,12 @@ class Server:
         entry_flag = True
 
 
-        if request == "":
-            # index.html, hub primero
-            with open("index.html", "rb") as given:
+        if request in ("", "style.css"):
+            if request == "":
+                request = "index.html"
+            elif request == "style.css":
+                request = "style.css"
+            with open(request, "rb") as given:
                 respuesta += given.read()
             respuesta = respuesta.decode("utf-8")
         
@@ -101,12 +104,6 @@ class Server:
             respuesta = respuesta.decode("utf-8")
             pass
         
-        elif "style.css" in request:
-            # Fallback de los css como el del hub
-            with open(request, "rb") as given:
-                respuesta += given.read()
-            respuesta = respuesta.decode("utf-8")
-        
         elif "resources/" in request:
             with open(request, "rb") as given:
                 respuesta += given.read()
@@ -122,7 +119,7 @@ class Server:
         # content-type block & code
         if entry_flag:
             http_code = "200 OK"
-            if content_type == "":  # case "font/ttf"
+            if content_type == "":  # case font, png or ico
                 if request.endswith(".html") or request == "":
                     content_type = "text/html"
                 elif request.endswith(".css"):
