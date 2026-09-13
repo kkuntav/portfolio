@@ -60,8 +60,6 @@ class Server:
         if request in ("", "style.css"):
             if request == "":
                 request = "index.html"
-            elif request == "style.css":
-                request = "style.css"
             with open(request, "rb") as given:
                 respuesta += given.read()
             respuesta = respuesta.decode("utf-8")
