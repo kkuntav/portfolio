@@ -1,0 +1,468 @@
+:root {
+    --black: #000000;
+    --white: #ffffff;
+
+    --ink-60: #666666;
+    --ink-40: #999999;
+
+    --font-main: 'Helvetica Neue', Arial, sans-serif;
+
+    --max-width: 1180px;
+}
+
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    width: 100%;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+
+    background: var(--white);
+    color: var(--black);
+
+    font-family: var(--font-main);
+
+    padding: 75px 5vw 80px;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+
+h1 {
+    width: 100%;
+    max-width: var(--max-width);
+
+    margin: 0 auto 28px;
+
+    font-family: var(--font-main);
+
+    font-size: clamp(3.2rem, 8vw, 7.8rem);
+    font-weight: 900;
+
+    letter-spacing: -0.055em;
+    line-height: 0.9;
+
+    text-align: center;
+
+    white-space: nowrap;
+}
+
+
+
+h2 {
+    width: 100%;
+    max-width: var(--max-width);
+
+    margin: 0 auto 42px;
+
+    font-family: var(--font-main);
+
+    font-size: 13px;
+    font-weight: 500;
+
+    letter-spacing: 0.08em;
+
+    color: var(--ink-60);
+
+    text-align: center;
+
+    text-transform: uppercase;
+}
+
+
+
+form {
+    position: relative;
+
+    width: 100%;
+    max-width: var(--max-width);
+
+    height: 48px;
+
+    margin: 0 auto 22px;
+
+    border-bottom: 1.5px solid var(--black);
+}
+
+
+input[type="text"] {
+    width: 100%;
+    height: 48px;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    color: var(--black);
+
+    font-family: var(--font-main);
+
+    font-size: 24px;
+    font-weight: 400;
+
+    text-align: center;
+
+    padding: 17px 10px 0 10px;
+}
+
+input[type="text"]::placeholder {
+    color: var(--ink-40);
+}
+
+input[type="text"]:focus {
+    outline: none;
+}
+
+
+
+button[type="submit"] {
+    position: absolute;
+
+    right: 5px;
+    bottom: 8px;
+
+    width: 28px;
+    height: 28px;
+
+    border: none;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    transition: opacity 0.2s ease;
+}
+
+button[type="submit"]::before {
+    content: "";
+
+    position: absolute;
+
+    width: 15px;
+    height: 15px;
+
+    left: 2px;
+    top: 2px;
+
+    border: 1.6px solid var(--black);
+
+    border-radius: 50%;
+}
+
+button[type="submit"]::after {
+    content: "";
+
+    position: absolute;
+
+    width: 8px;
+    height: 1.6px;
+
+    left: 15px;
+    top: 18px;
+
+    background: var(--black);
+
+    transform: rotate(45deg);
+    transform-origin: left center;
+}
+
+button[type="submit"]:hover {
+    opacity: 0.4;
+}
+
+
+p:first-of-type {
+    width: 100%;
+    max-width: var(--max-width);
+
+    margin: 0 auto 65px;
+
+    font-family: var(--font-main);
+
+    font-size: 11px;
+    font-weight: 400;
+
+    letter-spacing: 0.015em;
+
+    color: var(--ink-40);
+
+    text-align: center;
+}
+
+
+.results {
+    width: 100%;
+    max-width: var(--max-width);
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+
+    column-gap: 30px;
+
+    counter-reset: result-index;
+}
+
+
+
+.result {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    counter-increment: result-index;
+}
+
+
+.result img {
+    width: 100%;
+    height: 220px;
+
+    object-fit: contain;
+    object-position: center;
+
+    background: var(--white);
+
+    margin: 0 auto 22px;
+
+    transition: transform 0.3s ease;
+}
+
+.result img:hover {
+    transform: scale(1.025);
+}
+
+
+.result-info {
+    width: 100%;
+
+    text-align: center;
+}
+
+
+.result-info::before {
+    content: counter(result-index, decimal-leading-zero);
+
+    display: block;
+
+    margin-bottom: 9px;
+
+    font-family: var(--font-main);
+
+    font-size: 11px;
+    font-weight: 500;
+
+    letter-spacing: 0.05em;
+
+    color: var(--ink-40);
+}
+
+
+.result h3 {
+    min-height: 50px;
+
+    margin-bottom: 11px;
+
+    font-family: var(--font-main);
+
+    font-size: 24px;
+    font-weight: 500;
+
+    letter-spacing: -0.025em;
+
+    line-height: 1.05;
+
+    color: var(--black);
+}
+
+
+.result-info p {
+    width: 100%;
+    max-width: 28ch;
+
+    min-height: 54px;
+
+    margin: 0 auto 17px;
+
+    font-family: var(--font-main);
+
+    font-size: 12px;
+    font-weight: 400;
+
+    line-height: 1.5;
+
+    color: var(--ink-60);
+
+    display: -webkit-box;
+
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+
+    overflow: hidden;
+}
+
+
+.score,
+.ped,
+.syn,
+.qid {
+    display: block;
+
+    margin-bottom: 5px;
+
+    font-family: var(--font-main);
+
+    font-size: 10.5px;
+    font-weight: 400;
+
+    line-height: 1.4;
+
+    color: var(--ink-40);
+}
+
+
+.score::before,
+.ped::before,
+.syn::before,
+.qid::before {
+    font-weight: 500;
+
+    color: var(--ink-60);
+}
+
+.score::before {
+    content: "score ";
+}
+
+.ped::before {
+    content: "ped ";
+}
+
+.syn::before {
+    content: "syn ";
+}
+
+.qid::before {
+    content: "qid ";
+}
+
+.score {
+    color: var(--black);
+
+    font-weight: 600;
+}
+
+.score::before {
+    color: var(--black);
+
+    font-weight: 600;
+}
+
+/* mobile */
+@media (max-width: 750px) {
+
+    body {
+        padding: 50px 24px 50px;
+    }
+
+
+    h1 {
+        font-size: 11vw;
+
+        letter-spacing: -0.06em;
+
+        margin-bottom: 22px;
+    }
+
+
+    h2 {
+        font-size: 10px;
+
+        line-height: 1.5;
+
+        margin-bottom: 30px;
+    }
+
+
+    form {
+        height: 44px;
+    }
+
+
+    input[type="text"] {
+        height: 44px;
+
+        font-size: 20px;
+
+        padding: 14px 10px 0 10px;
+    }
+
+
+    button[type="submit"] {
+        bottom: 6px;
+    }
+
+
+    p:first-of-type {
+        font-size: 9px;
+
+        line-height: 1.5;
+
+        margin-bottom: 45px;
+    }
+
+
+    .results {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+
+        column-gap: 20px;
+        row-gap: 45px;
+    }
+
+
+    .result img {
+        height: 180px;
+
+        margin-bottom: 17px;
+    }
+
+
+    .result h3 {
+        min-height: 42px;
+
+        font-size: 20px;
+    }
+
+
+    .result-info p {
+        min-height: 45px;
+
+        font-size: 10px;
+
+        max-width: 23ch;
+    }
+
+
+    .score,
+    .ped,
+    .syn,
+    .qid {
+        font-size: 9px;
+    }
+}

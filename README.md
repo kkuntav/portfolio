@@ -1,50 +1,116 @@
-# portfolio
 
-1. Tener el servidor en tu repositorio
+# Diego Vegas — Portfolio
 
-Por ejemplo:
+Personal portfolio and showcase of selected software projects.
 
-portfolio/
-├── server/
-│   ├── server.py
-│   ├── http_request.py
-│   ├── http_response.py
-│   ├── router.py
-│   └── mime_types.py
-│
+The website contains information about my work, projects and technical interests, with a focus on software engineering, data and artificial intelligence.
+
+## Projects
+
+### DABID
+
+AI-powered data analysis and reporting platform.
+
+DABID is designed to work with business data and allow users to ask questions in natural language. The system processes the underlying data and generates useful answers and documentation.
+
+**Technologies:** Python, SQL, HTML, OpenAI API
+
+→ `/dabid`
+
+### ENTITY
+
+Entity search engine built around a large structured dataset.
+
+The project implements its own search and relevance-ranking system, including q-gram indexing and SQL-based querying.
+
+**Technologies:** Python, SQL, C++
+
+→ `/entity`
+
+### LECTER
+
+Retrieval Augmented Generation inspirated project
+
+The engine answer human language questions and answer giving extracts of a text source. Powered by OPENAI embedding system,
+this project uses cos-sim to get the most look alike fragments from the text to respond the query
+
+**Technologies:** Python, OpenAI API
+
+→ `/lecter`
+
+## Website
+
+The portfolio itself is intentionally built without a web framework.
+
+It uses a custom HTTP server written in Python to handle requests, routing and static files. The goal was to keep the underlying implementation simple and transparent rather than relying on a framework.
+
+```text
+Browser
+   ↓
+HTTP request
+   ↓
+Custom Python server
+   ↓
+Routing / static files
+   ↓
+HTML / CSS / project pages
+````
+
+## Structure
+
+```text
+.
+├── dabid/
+│   └── index.html
+├── entity/
+│   ├── index.html
+│   ├── qgram_index.py
+│   ├── sparql_to_sql.py
+│   ├── utils.py
+│   └── wikidata-complex.sql
+├── lecter/
+│   └── index.html
 ├── index.html
-├── dabid_demo/
-├── lecter_demo/
-└── entity_demo/
+├── server.py
+└── style.css
+```
 
-Y que el servidor sea código tuyo, sin depender de Flask/FastAPI para la parte HTTP.
+## Running locally
 
-En el README de GitHub puedes explicar:
+Clone the repository:
 
-Custom HTTP Server
+```bash
+git clone git@github-personal:kkuntav/portfolio.git
+cd portfolio
+```
 
-This portfolio is served by a lightweight HTTP server
-implemented from scratch in Python using TCP sockets.
+Run the server:
 
-Features:
-- HTTP request parsing
-- GET requests
-- URL routing
-- Static file serving
-- MIME type detection
-- HTTP status codes
-- 404 handling
-- Content-Length headers
-2. Añadir una sección en tu portfolio
+```bash
+python server.py
+```
 
-Por ejemplo:
+The portfolio will then be available locally through the configured port.
 
-How this portfolio works
+## Deployment
 
-This website is served by a custom HTTP server implemented from scratch in Python using TCP sockets. Instead of using a web framework, the server parses incoming HTTP requests, resolves routes and serves the corresponding resources.
+The website is deployed using Railway and runs the same Python server used during local development.
 
-Y un botón:
+The project is served from:
 
-[ View source on GitHub ]
+**https://diegovegas.de**
 
-que lleve directamente a la carpeta server/.
+## About
+
+I'm Diego Vegas, a Computer Engineering student interested in software engineering, backend development, data and artificial intelligence.
+
+This repository contains the code behind my personal portfolio as well as selected projects that I use to experiment with different areas of software development.
+
+---
+
+**Diego Vegas**
+Software Engineering / AI
+
+```
+
+```

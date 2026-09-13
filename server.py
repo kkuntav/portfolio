@@ -74,14 +74,19 @@ class Server:
                 
                 
             # solo servir el index
-            request = "entity/index.html"
+            if "style.css" in request:
+                request = "entity/style.css"
+            else:
+                request = "entity/index.html"
             with open(request, "rb") as given:
                 respuesta += given.read()
             respuesta = respuesta.decode("utf-8")
+            # En caso de recibir una query vacía
             if tiempo == "no_query":
                 respuesta = respuesta.replace("%TIME%", "No result available")
                 respuesta = respuesta.replace("%VALUE%", query.strip().replace("+", " "))
                 respuesta = respuesta.replace("%RESULT%", "<p>Query field cannot be empty</p>")
+            # Cuando la query está respondida
             else:
                 respuesta = respuesta.replace("%TIME%", tiempo)
                 respuesta = respuesta.replace("%VALUE%", query.strip().replace("+", " "))
@@ -96,7 +101,8 @@ class Server:
             respuesta = respuesta.decode("utf-8")
             pass
         
-        elif request == "style.css":
+        elif "style.css" in request:
+            # Fallback de los css como el del hub
             with open(request, "rb") as given:
                 respuesta += given.read()
             respuesta = respuesta.decode("utf-8")
@@ -127,9 +133,11 @@ class Server:
                     content_type = "font/ttf"
                 elif request.endswith(".ico"):
                     content_type = "image/x-icon"
+                elif request.endswith(".png"):
+                    content_type = "image/x-png"
 
         # Primero codificamos el body antes del content-length porque los acentos valen por 2 bytes
-        if content_type not in ("font/ttf", "image/x-icon"):
+        if content_type not in ("font/ttf", "image/x-icon", "image/x-png"):
             body = respuesta.encode("utf-8")
             charset = "; charset=utf-8"
         else:
