@@ -34,6 +34,26 @@ body {
     padding: 75px 5vw 80px;
 }
 
+/* =========================
+   SCROLLBAR
+========================= */
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: #ffffff;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cccccc;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #999999;
+}
+
 img {
     display: block;
     max-width: 100%;

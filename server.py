@@ -95,12 +95,49 @@ class Server:
 
 
         elif "lecter" in request:
+            if "style.css" in request:
+                request = "lecter/style.css"
+            else:
+                request = "lecter/index.html"
+            with open(request, "rb") as given:
+                respuesta += given.read()
             respuesta = respuesta.decode("utf-8")
-            pass
         
         elif "dabid" in request:
+            if "style.css" in request:
+                request = "dabid/style.css"
+            else:
+                request = "dabid/index.html"
+            with open(request, "rb") as given:
+                respuesta += given.read()
             respuesta = respuesta.decode("utf-8")
-            pass
+        
+        elif "emboar" in request:
+            if "style.css" in request:
+                request = "emboar/style.css"
+            else:
+                request = "emboar/index.html"
+            with open(request, "rb") as given:
+                respuesta += given.read()
+            respuesta = respuesta.decode("utf-8")
+        
+        elif "crimson" in request:
+            if "style.css" in request:
+                request = "crimson/style.css"
+            else:
+                request = "crimson/index.html"
+            with open(request, "rb") as given:
+                respuesta += given.read()
+            respuesta = respuesta.decode("utf-8")
+
+        elif "vegga" in request:
+            if "style.css" in request:
+                request = "vegga/style.css"
+            else:
+                request = "vegga/index.html"
+            with open(request, "rb") as given:
+                respuesta += given.read()
+            respuesta = respuesta.decode("utf-8")
         
         elif "resources/" in request:
             with open(request, "rb") as given:
@@ -130,9 +167,11 @@ class Server:
                     content_type = "image/x-icon"
                 elif request.endswith(".png"):
                     content_type = "image/x-png"
+                elif request.endswith(".jpg"):
+                    content_type = "image/jpeg" 
 
         # Primero codificamos el body antes del content-length porque los acentos valen por 2 bytes
-        if content_type not in ("font/ttf", "image/x-icon", "image/x-png"):
+        if content_type not in ("font/ttf", "image/x-icon", "image/x-png", "image/jpeg"):
             body = respuesta.encode("utf-8")
             charset = "; charset=utf-8"
         else:
