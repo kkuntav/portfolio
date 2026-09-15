@@ -1,11 +1,131 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>VEGGA | LECTER</title>
-        <link rel="stylesheet" href="lecter/style.css"/>
-        <link rel="icon" type="image/x-icon" href="resources/icono/favicon.ico">
-    </head>
-    <body>
-        <h1>Demo de LECTER</h1>
-    </body>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>VEGGA | LECTER</title>
+
+    <link rel="stylesheet" href="lecter/style.css">
+    <link rel="icon" type="image/x-icon" href="resources/icono/favicon.ico">
+</head>
+
+<body>
+
+    <h1>RAG SEARCH</h1>
+
+    <h2>ASK QUESTIONS ABOUT A DOCUMENT</h2>
+
+
+    <form method="GET">
+
+        <div class="document-selector">
+
+            <label>
+                <input
+                    type="radio"
+                    name="document"
+                    value="sherlock"
+                    %SHERLOCK_CHECKED%
+                >
+                <span>SHERLOCK HOLMES</span>
+            </label>
+
+            <label>
+                <input
+                    type="radio"
+                    name="document"
+                    value="metamorphosis"
+                    %META_CHECKED%
+                >
+                <span>THE METAMORPHOSIS</span>
+            </label>
+
+        </div>
+
+
+        <div class="search-bar">
+
+            <input
+                type="text"
+                id="query"
+                name="homer"
+                value="%VALUE%"
+                autocomplete="off"
+                placeholder="What do you want to know?"
+            >
+
+            <button
+                type="submit"
+                aria-label="Ask"
+            ></button>
+
+        </div>
+
+    </form>
+
+
+    <p class="time">
+        %TIME%
+    </p>
+
+
+    <div class="loading" id="loading">
+
+        <div class="loading-line">
+            <span></span>
+        </div>
+
+        <div class="loading-text" id="loading-text">
+            READING DOCUMENT
+        </div>
+
+    </div>
+
+
+    <div class="answer">
+        %RESULT%
+    </div>
+
+    <!-- visual para cuando mientras carga la respuesta, not self made -->
+    <script>
+        const form = document.querySelector("form");
+        const loading = document.getElementById("loading");
+        const loadingText = document.getElementById("loading-text");
+
+        const loadingMessages = [
+            "READING DOCUMENT",
+            "SEARCHING RELEVANT PASSAGES",
+            "COMPARING RELEVANCE",
+            "GENERATING ANSWER",
+            "THE UNIVERSE IS'NT MEANT TO BE SCARY. IT IS WHAT IT IS",
+            "ILLUSORY WALL AHEAD",
+            "SCIENCE COMPELS US TO EXPLODE THE SUN",
+            "SHIP LOG UPDATED",
+            "OF ALL THE LIFE FORMS THAT WILL PERISH IN THE ONCOMING DEATH OF THE UNIVERSE, WE WILL MISS THE ANGLERFISH THE LEAST"
+        ];
+
+        let messageIndex = 0;
+
+        form.addEventListener("submit", function () {
+
+            loading.style.display = "block";
+
+            messageIndex = 0;
+            loadingText.textContent = loadingMessages[messageIndex];
+
+            setInterval(function () {
+
+                messageIndex++;
+
+                if (messageIndex < loadingMessages.length) {
+                    loadingText.textContent = loadingMessages[messageIndex];
+                }
+
+            }, 1800);
+
+        });
+    </script>
+
+</body>
 </html>

@@ -2,7 +2,7 @@ import socket
 import os
 
 from entity.entity import main as entity
-
+from lecter.lecter import main as lecter
 
 class Server:
     def __init__(self, port: int) -> None:
@@ -63,17 +63,17 @@ class Server:
             with open(request, "rb") as given:
                 respuesta += given.read()
             respuesta = respuesta.decode("utf-8")
-        
+
+
         elif "entity" in request:
             query = ""
             result = ""
             tiempo = ""
             if "?homer" in request:
                 # tratar la query solo si se ha respondido
-                query = request[len("entity?homer="):]
+                query = request[len("entity?homer="):].replace("+", " ")
                 tiempo, result = entity(query)
-                
-                
+
             # solo servir el index
             if "style.css" in request:
                 request = "entity/style.css"
@@ -84,17 +84,28 @@ class Server:
             respuesta = respuesta.decode("utf-8")
             # En caso de recibir una query vacía
             if tiempo == "no_query":
-                respuesta = respuesta.replace("%TIME%", "No result available")
-                respuesta = respuesta.replace("%VALUE%", query.strip().replace("+", " "))
-                respuesta = respuesta.replace("%RESULT%", "<p>Query field cannot be empty</p>")
-            # Cuando la query está respondida
-            else:
-                respuesta = respuesta.replace("%TIME%", tiempo)
-                respuesta = respuesta.replace("%VALUE%", query.strip().replace("+", " "))
-                respuesta = respuesta.replace("%RESULT%", result)
+                tiempo = "No result available.<br>Query cannot be empty"
+
+            respuesta = respuesta.replace("%TIME%", tiempo)
+            respuesta = respuesta.replace("%VALUE%", query)
+            respuesta = respuesta.replace("%RESULT%", result)
+
 
 
         elif "lecter" in request:
+            query = ""
+            result = ""
+            tiempo = ""
+            document = ""
+            if "homer" in request:
+                # lecter?document=metamorphosis&homer=cuantos
+                # lecter?document=bible&homer=cuantos
+                start = request.index("=")
+                end = request.index("&")
+                document = request[start + 1:end]
+                query = request[end + len("homer=") + 1:].replace("+", " ")
+                tiempo, result = lecter(document, query)
+                
             if "style.css" in request:
                 request = "lecter/style.css"
             else:
@@ -102,7 +113,27 @@ class Server:
             with open(request, "rb") as given:
                 respuesta += given.read()
             respuesta = respuesta.decode("utf-8")
-        
+
+            # Why did Sherlock Holmes believe that the mud on the suspect's boots was important evidence?
+            # Why does Gregor continue to worry about going to work after waking up transformed?
+            if tiempo == "no_query":
+                tiempo = "No result available.<br>Query cannot be empty"
+            flag_document = "%SHERLOCK_CHECKED%"
+            # Sherlock es la default
+            if document == "metamorphosis":
+                flag_document = "%META_CHECKED%"
+            respuesta = respuesta.replace(flag_document, "checked")
+            respuesta = respuesta.replace("%TIME%", tiempo)
+            respuesta = respuesta.replace("%VALUE%", query)
+            respuesta = respuesta.replace("%RESULT%", result)
+            
+            # Arreglar esos caracters especiales en la refactorizarcion
+            respuesta = respuesta.replace("%27", "'")
+            respuesta = respuesta.replace("%3F", "?")
+
+
+
+
         elif "dabid" in request:
             if "style.css" in request:
                 request = "dabid/style.css"

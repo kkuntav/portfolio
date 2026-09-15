@@ -1,7 +1,7 @@
 from entity.qgram_index import main as qgram
 
 
-def main(query: str) -> str:
+def main(query: str) -> tuple[str, str]:
     tiempo, resultados = qgram(query, 3)
     # El html inyectado debería tener un formato así:
     # <div class="result">
