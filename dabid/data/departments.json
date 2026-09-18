@@ -1,0 +1,26 @@
+[
+    {
+        "DepartmentID": "D01",
+        "DepartmentName": "Data",
+        "Division": "Technology",
+        "Location": "San Francisco"
+    },
+    {
+        "DepartmentID": "D02",
+        "DepartmentName": "Human Resources",
+        "Division": "Corporate",
+        "Location": "Austin"
+    },
+    {
+        "DepartmentID": "D03",
+        "DepartmentName": "Sales",
+        "Division": "Commercial",
+        "Location": "Miami"
+    },
+    {
+        "DepartmentID": "D04",
+        "DepartmentName": "Finance",
+        "Division": "Corporate",
+        "Location": "New York"
+    }
+]

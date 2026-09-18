@@ -1,0 +1,58 @@
+[
+    {
+        "SalaryID": "S001",
+        "EmpID": 1001,
+        "BaseSalary": 70000,
+        "Bonus": 5000,
+        "PayZone": "Zone A",
+        "EffectiveDate": "01/01/2023"
+    },
+    {
+        "SalaryID": "S002",
+        "EmpID": 1002,
+        "BaseSalary": 65000,
+        "Bonus": 4000,
+        "PayZone": "Zone B",
+        "EffectiveDate": "01/01/2023"
+    },
+    {
+        "SalaryID": "S003",
+        "EmpID": 1003,
+        "BaseSalary": 80000,
+        "Bonus": 6000,
+        "PayZone": "Zone A",
+        "EffectiveDate": "01/01/2023"
+    },
+    {
+        "SalaryID": "S004",
+        "EmpID": 1004,
+        "BaseSalary": 90000,
+        "Bonus": 10000,
+        "PayZone": "Zone C",
+        "EffectiveDate": "01/01/2022"
+    },
+    {
+        "SalaryID": "S005",
+        "EmpID": 1005,
+        "BaseSalary": 120000,
+        "Bonus": 15000,
+        "PayZone": "Zone A",
+        "EffectiveDate": "01/01/2023"
+    },
+    {
+        "SalaryID": "S006",
+        "EmpID": 1006,
+        "BaseSalary": 110000,
+        "Bonus": 12000,
+        "PayZone": "Zone B",
+        "EffectiveDate": "01/01/2023"
+    },
+    {
+        "SalaryID": "S007",
+        "EmpID": 1007,
+        "BaseSalary": 130000,
+        "Bonus": 20000,
+        "PayZone": "Zone C",
+        "EffectiveDate": "01/01/2023"
+    }
+]

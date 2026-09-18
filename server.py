@@ -1,8 +1,11 @@
 import socket
 import os
+import json
 
 from entity.entity import main as entity
 from lecter.lecter import main as lecter
+from dabid.dabid import main as dabid
+
 
 class Server:
     def __init__(self, port: int) -> None:
@@ -135,14 +138,47 @@ class Server:
 
 
         elif "dabid" in request:
-            if "style.css" in request:
-                request = "dabid/style.css"
-            else:
+            query = ""
+            result = ""
+            answer = ""
+            tiempo = ""
+            # dabid?query=cuantos&tables=multiset
+            # dabid?query=cuantos&tables=big-table
+            if "query" in request:
+                start = len("dabid?query=")
+                end = request.index("&")
+                query = request[start:end].replace("+", " ")
+                if request.endswith("multiset"):
+                    # Mandamos las tablas multiset
+                    lista = ["departments", "employees", "performance_reviews", "salaries"]
+                else:
+                    lista = ["employee_data"]
+                # What is the department with the most "Needs Improvement" ratings in PerformanceScore?
+                # How many employees with a "Needs Improvement" performance rating are there in each department?
+                tiempo, answer, result = dabid(lista, query)
+
+            if (request == "dabid") or ("dabid?query" in request):
                 request = "dabid/index.html"
+            elif "style.css" in request:
+                request = "dabid/style.css"
+            # Si no es ninguna de esas, entonces está mandando el json
             with open(request, "rb") as given:
                 respuesta += given.read()
             respuesta = respuesta.decode("utf-8")
-        
+            
+            if tiempo == "no_query":
+                tiempo = "No result available.<br>Query cannot be empty"
+            # Arreglar en refactorizacion
+            respuesta = respuesta.replace("%TIME%", tiempo)
+            respuesta = respuesta.replace("%RESULT%", result)
+            respuesta = respuesta.replace("%ANSWER%", answer)
+            respuesta = respuesta.replace("%VALUE%", query)
+            respuesta = respuesta.replace("%3F", "?")
+            respuesta = respuesta.replace("%22", "\"")
+
+
+
+
         elif "emboar" in request:
             if "style.css" in request:
                 request = "emboar/style.css"
@@ -151,7 +187,9 @@ class Server:
             with open(request, "rb") as given:
                 respuesta += given.read()
             respuesta = respuesta.decode("utf-8")
-        
+
+
+
         elif "crimson" in request:
             if "style.css" in request:
                 request = "crimson/style.css"
@@ -160,6 +198,9 @@ class Server:
             with open(request, "rb") as given:
                 respuesta += given.read()
             respuesta = respuesta.decode("utf-8")
+
+
+
 
         elif "vegga" in request:
             if "style.css" in request:
@@ -190,6 +231,8 @@ class Server:
                     content_type = "text/html"
                 elif request.endswith(".css"):
                     content_type = "text/css"
+                elif request.endswith(".json"):
+                    content_type = "application/json"
                 elif request.endswith(".txt"):
                     content_type = "text/plain"
                 elif request.endswith(".ttf"):

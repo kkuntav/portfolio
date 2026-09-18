@@ -1,11 +1,798 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>VEGGA | DABID</title>
-        <link rel="stylesheet" href="dabid/style.css"/>
-        <link rel="icon" type="image/x-icon" href="resources/icono/favicon.ico">
-    </head>
-    <body>
-        <h1>Demo de DABID</h1>
-    </body>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>VEGGA | DABID</title>
+
+    <link rel="stylesheet" href="/dabid/style.css">
+    <link rel="icon" type="image/x-icon" href="resources/icono/favicon.ico">
+
+
+</head>
+
+<body>
+
+<main>
+
+    <h1>INFO RETRIEVAL</h1>
+
+    <h2>ASK QUESTIONS ABOUT YOUR DATA</h2>
+
+
+    <!-- DATA MODE -->
+
+    <div class="data-selector">
+
+        <label>
+
+            <input
+                type="radio"
+                name="data-mode"
+                value="multiset"
+                checked
+            >
+
+            <span>MULTISET</span>
+
+        </label>
+
+
+        <label>
+
+            <input
+                type="radio"
+                name="data-mode"
+                value="big-table"
+            >
+
+            <span>BIG TABLE</span>
+
+        </label>
+
+    </div>
+
+
+    <!-- TABLE SELECTOR -->
+
+    <div
+        class="table-selector"
+        id="table-selector"
+    ></div>
+
+
+    <!-- QUERY -->
+
+    <form id="query-form">
+
+        <div class="search-bar">
+
+            <input
+                type="text"
+                id="query"
+                name="query"
+                placeholder="e.g: How many employees have a 'g' on their name and their ids and departments?"
+                autocomplete="off"
+            >
+
+            <button
+                type="submit"
+                aria-label="Submit query"
+            ></button>
+
+        </div>
+
+    </form>
+
+
+    <!-- TIME -->
+
+    <p class="time">%TIME%</p>
+
+
+    <!-- LOADING -->
+
+    <div
+        class="loading"
+        id="loading"
+        style="display: none;"
+    >
+
+        <div class="loading-line">
+            <span></span>
+        </div>
+
+        <p
+            class="loading-text"
+            id="loading-text"
+        >
+            ANALYZING DATA
+        </p>
+
+    </div>
+
+
+    <!-- GENERATED SQL -->
+
+    <div class="answer">%ANSWER%</div>
+
+
+    <!-- QUERY RESULT -->
+
+    <div class="excel-viewer result-viewer">
+
+        <div class="excel-table">
+
+            %RESULT%
+
+        </div>
+
+    </div>
+
+
+    <!-- DATA PREVIEW -->
+
+    <div
+        class="excel-viewer"
+        id="excel-viewer"
+    >
+
+        <div class="excel-header">
+
+            <h3 id="excel-title">—</h3>
+
+            <p id="excel-info">—</p>
+
+        </div>
+
+
+        <div class="excel-table">
+
+            <table id="excel-table"></table>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<script>
+
+    let selectedMode = "multiset";
+    let selectedTable = "departments";
+
+    const tables = {};
+
+    const tableNames = [
+        "departments",
+        "employees",
+        "performance_reviews",
+        "salaries",
+        "employee_data"
+    ];
+
+
+    const form =
+        document.getElementById("query-form");
+
+    const queryInput =
+        document.getElementById("query");
+
+    const tableSelector =
+        document.getElementById("table-selector");
+
+    const excelViewer =
+        document.getElementById("excel-viewer");
+
+    const excelTitle =
+        document.getElementById("excel-title");
+
+    const excelInfo =
+        document.getElementById("excel-info");
+
+    const excelTable =
+        document.getElementById("excel-table");
+
+    const answer =
+        document.querySelector(".answer");
+
+    const dataModeInputs =
+        document.querySelectorAll(
+            'input[name="data-mode"]'
+        );
+
+
+    /* =========================
+       READ URL
+    ========================= */
+
+    function readURL() {
+
+        const params =
+            new URLSearchParams(
+                window.location.search
+            );
+
+        const query =
+            params.get("query");
+
+        const mode =
+            params.get("tables");
+
+
+        if (query) {
+
+            queryInput.value =
+                query;
+
+        }
+
+
+        if (mode === "big-table") {
+
+            selectedMode =
+                "big-table";
+
+        } else {
+
+            selectedMode =
+                "multiset";
+
+        }
+
+
+        dataModeInputs.forEach(
+            function (input) {
+
+                input.checked =
+                    input.value ===
+                    selectedMode;
+
+            }
+        );
+
+
+        /*
+         * When there is a query,
+         * don't show the preview table.
+         */
+
+        if (query) {
+
+            excelViewer.style.display =
+                "none";
+
+        }
+
+
+        /*
+         * Hide empty SQL container.
+         */
+
+        if (answer) {
+
+            const answerText =
+                answer.textContent.trim();
+
+            if (!answerText) {
+
+                answer.style.display =
+                    "none";
+
+            }
+
+        }
+
+    }
+
+
+    /* =========================
+       LOAD TABLES
+    ========================= */
+
+    async function loadTables() {
+
+        for (const name of tableNames) {
+
+            try {
+
+                const response =
+                    await fetch(
+                        `/dabid/data/${name}.json`
+                    );
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        `Failed to load ${name}`
+                    );
+
+                }
+
+
+                tables[name] =
+                    await response.json();
+
+            } catch (error) {
+
+                console.error(
+                    `Error loading ${name}:`,
+                    error
+                );
+
+            }
+
+        }
+
+
+        const params =
+            new URLSearchParams(
+                window.location.search
+            );
+
+        const query =
+            params.get("query");
+
+
+        /*
+         * Don't render preview
+         * when showing a result.
+         */
+
+        if (query) {
+
+            return;
+
+        }
+
+
+        if (selectedMode === "big-table") {
+
+            showBigTable();
+
+        } else {
+
+            showMultiset();
+
+        }
+
+    }
+
+
+    /* =========================
+       MULTISET
+    ========================= */
+
+    function showMultiset() {
+
+        selectedMode =
+            "multiset";
+
+        selectedTable =
+            "departments";
+
+        tableSelector.innerHTML =
+            "";
+
+
+        const multisetTables = [
+            "departments",
+            "employees",
+            "performance_reviews",
+            "salaries"
+        ];
+
+
+        for (const name of multisetTables) {
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.type =
+                "button";
+
+            button.className =
+                "table-button";
+
+
+            button.textContent =
+                name
+                    .replace("_", " ")
+                    .toUpperCase();
+
+
+            if (name === selectedTable) {
+
+                button.classList.add(
+                    "active"
+                );
+
+            }
+
+
+            button.addEventListener(
+                "click",
+                function () {
+
+                    showTable(name);
+
+                }
+            );
+
+
+            tableSelector.appendChild(
+                button
+            );
+
+        }
+
+
+        showTable(
+            selectedTable
+        );
+
+    }
+
+
+    /* =========================
+       BIG TABLE
+    ========================= */
+
+    function showBigTable() {
+
+        selectedMode =
+            "big-table";
+
+        selectedTable =
+            "employee_data";
+
+        tableSelector.innerHTML =
+            "";
+
+        showTable(
+            "employee_data"
+        );
+
+    }
+
+
+    /* =========================
+       SHOW TABLE
+    ========================= */
+
+    function showTable(name) {
+
+        selectedTable =
+            name;
+
+
+        const data =
+            tables[name];
+
+
+        if (
+            !data ||
+            data.length === 0
+        ) {
+
+            excelTitle.textContent =
+                name
+                    .replace("_", " ")
+                    .toUpperCase();
+
+
+            excelInfo.textContent =
+                "NO DATA AVAILABLE";
+
+
+            excelTable.innerHTML =
+                "";
+
+            return;
+
+        }
+
+
+        /*
+         * Active table button
+         */
+
+        const buttons =
+            tableSelector.querySelectorAll(
+                ".table-button"
+            );
+
+
+        buttons.forEach(
+            function (button) {
+
+                const buttonName =
+                    button.textContent
+                        .toLowerCase()
+                        .replace(
+                            / /g,
+                            "_"
+                        );
+
+
+                if (
+                    buttonName === name
+                ) {
+
+                    button.classList.add(
+                        "active"
+                    );
+
+                } else {
+
+                    button.classList.remove(
+                        "active"
+                    );
+
+                }
+
+            }
+        );
+
+
+        /*
+         * Header
+         */
+
+        excelTitle.textContent =
+            name
+                .replace("_", " ")
+                .toUpperCase();
+
+
+        excelInfo.textContent =
+            `${data.length} ROWS`;
+
+
+        excelTable.innerHTML =
+            "";
+
+
+        /*
+         * Columns
+         */
+
+        const columns =
+            Object.keys(
+                data[0]
+            );
+
+
+        /*
+         * THEAD
+         */
+
+        const thead =
+            document.createElement(
+                "thead"
+            );
+
+
+        const headerRow =
+            document.createElement(
+                "tr"
+            );
+
+
+        for (const column of columns) {
+
+            const th =
+                document.createElement(
+                    "th"
+                );
+
+
+            th.textContent =
+                column.toUpperCase();
+
+
+            headerRow.appendChild(
+                th
+            );
+
+        }
+
+
+        thead.appendChild(
+            headerRow
+        );
+
+        excelTable.appendChild(
+            thead
+        );
+
+
+        /*
+         * TBODY
+         */
+
+        const tbody =
+            document.createElement(
+                "tbody"
+            );
+
+
+        for (const row of data) {
+
+            const tr =
+                document.createElement(
+                    "tr"
+                );
+
+
+            for (const column of columns) {
+
+                const td =
+                    document.createElement(
+                        "td"
+                    );
+
+
+                const value =
+                    row[column];
+
+
+                if (
+                    value === null ||
+                    value === undefined
+                ) {
+
+                    td.textContent =
+                        "";
+
+                } else {
+
+                    td.textContent =
+                        value;
+
+                }
+
+
+                tr.appendChild(
+                    td
+                );
+
+            }
+
+
+            tbody.appendChild(
+                tr
+            );
+
+        }
+
+
+        excelTable.appendChild(
+            tbody
+        );
+
+    }
+
+
+    /* =========================
+       DATA MODE
+    ========================= */
+
+    dataModeInputs.forEach(
+        function (input) {
+
+            input.addEventListener(
+                "change",
+                function () {
+
+                    /*
+                     * Show preview again when
+                     * switching datasets.
+                     */
+
+                    excelViewer.style.display =
+                        "";
+
+
+                    if (
+                        input.value ===
+                        "multiset"
+                    ) {
+
+                        showMultiset();
+
+                    }
+
+
+                    if (
+                        input.value ===
+                        "big-table"
+                    ) {
+
+                        showBigTable();
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+
+    /* =========================
+       QUERY SUBMIT
+    ========================= */
+
+    form.addEventListener(
+        "submit",
+        function (event) {
+
+            event.preventDefault();
+
+
+            const userQuery =
+                queryInput.value.trim();
+
+
+            if (!userQuery) {
+
+                return;
+
+            }
+
+
+            const params =
+                new URLSearchParams();
+
+
+            /*
+             * IMPORTANT:
+             * query is added FIRST.
+             */
+
+            params.set(
+                "query",
+                userQuery
+            );
+
+
+            /*
+             * tables is added SECOND.
+             */
+
+            params.set(
+                "tables",
+                selectedMode
+            );
+
+
+            window.location.href =
+                "/dabid?" +
+                params.toString();
+
+        }
+    );
+
+
+    /* =========================
+       INITIALIZE
+    ========================= */
+
+    readURL();
+
+    loadTables();
+
+</script>
+
+</body>
+
 </html>

@@ -1,0 +1,58 @@
+[
+    {
+        "ReviewID": "R001",
+        "EmpID": 1001,
+        "ReviewDate": "30/06/2023",
+        "PerformanceScore": "Fully Meets",
+        "ManagerRating": 4,
+        "Comments": "Consistent performance"
+    },
+    {
+        "ReviewID": "R002",
+        "EmpID": 1002,
+        "ReviewDate": "30/06/2023",
+        "PerformanceScore": "Exceeds",
+        "ManagerRating": 5,
+        "Comments": "Outstanding HR leadership"
+    },
+    {
+        "ReviewID": "R003",
+        "EmpID": 1003,
+        "ReviewDate": "30/06/2023",
+        "PerformanceScore": "Needs Improvement",
+        "ManagerRating": 2,
+        "Comments": "Needs better documentation"
+    },
+    {
+        "ReviewID": "R004",
+        "EmpID": 1004,
+        "ReviewDate": "30/06/2022",
+        "PerformanceScore": "Fully Meets",
+        "ManagerRating": 3,
+        "Comments": "Met sales targets"
+    },
+    {
+        "ReviewID": "R005",
+        "EmpID": 1005,
+        "ReviewDate": "30/06/2023",
+        "PerformanceScore": "Exceeds",
+        "ManagerRating": 5,
+        "Comments": "Excellent leadership"
+    },
+    {
+        "ReviewID": "R006",
+        "EmpID": 1006,
+        "ReviewDate": "30/06/2023",
+        "PerformanceScore": "Fully Meets",
+        "ManagerRating": 4,
+        "Comments": "Strong management skills"
+    },
+    {
+        "ReviewID": "R007",
+        "EmpID": 1007,
+        "ReviewDate": "30/06/2023",
+        "PerformanceScore": "Exceeds",
+        "ManagerRating": 5,
+        "Comments": "Top sales performance"
+    }
+]

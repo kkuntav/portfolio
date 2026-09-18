@@ -1,8 +1,0 @@
-ReviewID,EmpID,ReviewDate,PerformanceScore,ManagerRating,Comments
-R001,1001,2023-06-30,Fully Meets,4,Consistent performance
-R002,1002,2023-06-30,Exceeds,5,Outstanding HR leadership
-R003,1003,2023-06-30,Needs Improvement,2,Needs better documentation
-R004,1004,2022-06-30,Fully Meets,3,Met sales targets
-R005,1005,2023-06-30,Exceeds,5,Excellent leadership
-R006,1006,2023-06-30,Fully Meets,4,Strong management skills
-R007,1007,2023-06-30,Exceeds,5,Top sales performance
