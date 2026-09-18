@@ -235,6 +235,8 @@ class Server:
                     content_type = "application/json"
                 elif request.endswith(".txt"):
                     content_type = "text/plain"
+                elif request.endswith(".pdf"):
+                    content_type = "application/pdf"
                 elif request.endswith(".ttf"):
                     content_type = "font/ttf"
                 elif request.endswith(".ico"):
@@ -242,10 +244,10 @@ class Server:
                 elif request.endswith(".png"):
                     content_type = "image/x-png"
                 elif request.endswith(".jpg"):
-                    content_type = "image/jpeg" 
+                    content_type = "image/jpeg"
 
         # Primero codificamos el body antes del content-length porque los acentos valen por 2 bytes
-        if content_type not in ("font/ttf", "image/x-icon", "image/x-png", "image/jpeg"):
+        if content_type not in ("font/ttf", "image/x-icon", "image/x-png", "image/jpeg", "application/pdf"):
             body = respuesta.encode("utf-8")
             charset = "; charset=utf-8"
         else:
