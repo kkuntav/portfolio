@@ -93,7 +93,7 @@ class Dabid:
     
     
     def getDocumentation(self, query_sql: str) -> pandas.core.frame.DataFrame:
-        conn = sqlite3.connect("database.db")
+        conn = sqlite3.connect("dabid/data/database.db")
         result = pandas.read_sql_query(query_sql, conn)
         conn.close()
         return result
