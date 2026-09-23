@@ -5,8 +5,7 @@ import os
 import time
 import re
 
-OPENAI_API_KEY=os.environ.get("OPENAI_API_KEY")
-
+OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
 
 class Dabid:
     def __init__(self, file: str, lista: list[str]) -> None:
@@ -290,9 +289,9 @@ def main(lista: list[str], query: str, file: str = "dabid/data/tables.xlsx") -> 
 
 
 
-if __name__ == "__main__":
-    file = "tables.xlsx"
-    # , "employee_data"
-    tables = ["departments", "employees", "performance_reviews", "salaries"]
-    query = "What is the department with the most \"Needs Improvement\" ratings in PerformanceScore?"
-    main(tables, query, file)
+# if __name__ == "__main__":
+#     file = "tables.xlsx"
+#     # , "employee_data"
+#     tables = ["departments", "employees", "performance_reviews", "salaries"]
+#     query = "What is the department with the most \"Needs Improvement\" ratings in PerformanceScore?"
+#     main(tables, query, file)
