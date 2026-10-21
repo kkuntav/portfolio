@@ -90,8 +90,6 @@ I'm Diego Vegas, a Computer Engineering student interested in software engineeri
 This repository contains the code behind my personal portfolio as well as selected projects that I use to experiment with different areas of software development.
 
 ---
-
-**Diego Vegas**
 Software Engineering / AI
 
 ```
