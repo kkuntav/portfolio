@@ -28,10 +28,9 @@ The project implements its own search and relevance-ranking system, including q-
 
 ### LECTER
 
-Retrieval Augmented Generation inspirated project
+Retrieval-Augmented Generation (RAG) project.
 
-The engine answer human language questions and answer giving extracts of a text source. Powered by OPENAI embedding system,
-this project uses cos-sim to get the most look alike fragments from the text to respond the query
+The engine answers natural language questions using relevant extracts from a text source. Powered by OpenAI embeddings, it uses cosine similarity to retrieve the most relevant text fragments and generate responses.
 
 **Technologies:** Python, OpenAI API
 
@@ -43,36 +42,32 @@ The portfolio itself is intentionally built without a web framework.
 
 It uses a custom HTTP server written in Python to handle requests, routing and static files. The goal was to keep the underlying implementation simple and transparent rather than relying on a framework.
 
-```text
-Browser
-   ↓
-HTTP request
-   ↓
-Custom Python server
-   ↓
-Routing / static files
-   ↓
-HTML / CSS / project pages
-```
+    Browser
+       ↓
+    HTTP request
+       ↓
+    Custom Python server
+       ↓
+    Routing / static files
+       ↓
+    HTML / CSS / project pages
 
 ## Structure
 
-```text
-.
-├── dabid/
-│   └── index.html
-├── entity/
-│   ├── index.html
-│   ├── qgram_index.py
-│   ├── sparql_to_sql.py
-│   ├── utils.py
-│   └── wikidata-complex.sql
-├── lecter/
-│   └── index.html
-├── index.html
-├── server.py
-└── style.css
-```
+    .
+    ├── dabid/
+    │   └── index.html
+    ├── entity/
+    │   ├── index.html
+    │   ├── qgram_index.py
+    │   ├── sparql_to_sql.py
+    │   ├── utils.py
+    │   └── wikidata-complex.sql
+    ├── lecter/
+    │   └── index.html
+    ├── index.html
+    ├── server.py
+    └── style.css
 
 ## Deployment
 
@@ -87,8 +82,3 @@ The project is served from:
 I'm Diego Vegas, a Computer Engineering student interested in software engineering, backend development, data and artificial intelligence.
 
 This repository contains the code behind my personal portfolio as well as selected projects that I use to experiment with different areas of software development.
-Software Engineering / AI
-
-```
-
-```
