@@ -88,8 +88,6 @@ The project is served from:
 I'm Diego Vegas, a Computer Engineering student interested in software engineering, backend development, data and artificial intelligence.
 
 This repository contains the code behind my personal portfolio as well as selected projects that I use to experiment with different areas of software development.
-
----
 Software Engineering / AI
 
 ```
