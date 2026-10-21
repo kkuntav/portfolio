@@ -1,9 +1,9 @@
 
-# Diego Vegas — Portfolio
+# Diego Vegas - Portfolio
 
 Personal portfolio and showcase of selected software projects.
 
-The website contains information about my work, projects and technical interests, with a focus on software engineering, data and artificial intelligence.
+The website contains information about my work, projects and technical interests.
 
 ## Projects
 
@@ -74,23 +74,6 @@ HTML / CSS / project pages
 ├── server.py
 └── style.css
 ```
-
-## Running locally
-
-Clone the repository:
-
-```bash
-git clone git@github-personal:kkuntav/portfolio.git
-cd portfolio
-```
-
-Run the server:
-
-```bash
-python server.py
-```
-
-The portfolio will then be available locally through the configured port.
 
 ## Deployment
 
