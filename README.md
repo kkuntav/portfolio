@@ -1,4 +1,3 @@
-
 # Diego Vegas - Portfolio
 
 Personal portfolio and showcase of selected software projects.
@@ -54,7 +53,7 @@ Custom Python server
 Routing / static files
    ↓
 HTML / CSS / project pages
-````
+```
 
 ## Structure
 
